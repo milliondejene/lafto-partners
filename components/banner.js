@@ -21,21 +21,21 @@ function Banner() {
           borderRadius: "100px",
         }}
       >
-        <ArrowUpIcon
-          style={{
-            color: "rgb(255,118,87)",
-            height: "24px",
-            width: "24px",
-            position: "relative",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-          fontWeight={800}
-          onClick={() => {
-            handleBackToTop();
-          }}
-        />
+      <ArrowUpIcon
+  style={{
+    color: "hsl(0, 0%, 70%)", // Light gray for white background
+    height: "24px",
+    width: "24px",
+    position: "relative",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+  }}
+  fontWeight={800}
+  onClick={() => {
+    handleBackToTop();
+  }}
+/>
       </div>
       <div class="container zindex">
         <div class="row">
