@@ -27,7 +27,7 @@ function Footer() {
                             <i className="fa fa-twitter" aria-hidden="true"></i>
                         </Link>
                         <Link href="https://dribbble.com/LaftoPartners">
-                            <i className="fa fa-dribbble" aria-hidden="true"></i>
+                            <i className="fa fa-pinterest" aria-hidden="true"></i>
                         </Link>
                         <Link href="https://www.linkedin.com/company/laftopartners">
                             <i className="fa fa-linkedin" aria-hidden="true"></i>

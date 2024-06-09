@@ -1,6 +1,4 @@
-// pages/_app.js
 import { useEffect } from 'react';
-import Head from 'next/head';
 import { ThemeProvider } from '../lib/themeContext';
 import '../styles/globals.css'; // Global styles
 
@@ -13,25 +11,20 @@ function MyApp({ Component, pageProps }) {
       script.async = true;
       script.onload = callback;
       document.body.appendChild(script);
-      return script;
     };
 
     const scripts = [
-      { src: "js/jquery-3.3.1.min.js" },
-      { src: "js/bootstrap.min.js"},
-      { src: "js/slick.min.js"},
-      { src: "js/line.min.js"},
-      { src: "js/particles.js"},
-      { src: "js/app.js"},
-      { src: "js/circular.js", id: "circular" },
-      { src: "js/custom.js"},
+      { src: '/js/jquery-3.3.1.min.js', id: 'jquery' },
+      { src: '/js/bootstrap.min.js', id: 'bootstrap' },
+      { src: '/js/slick.min.js' },
+      { src: '/js/line.min.js' },
+      { src: '/js/particles.js', id: 'particles' },
+      { src: '/js/app.js', id: 'app' },
+      { src: '/js/circular.js', id: 'circular' },
+      { src: '/js/custom.js', id: 'custom' },
     ];
 
-    const scriptElements = scripts.map(({ src, id }) => loadScript(src, id, () => {
-      if (id === 'jquery') {
-        loadCustomScript();
-      }
-    }));
+    scripts.forEach(({ src, id }) => loadScript(src, id));
 
     const loadCustomScript = () => {
       const customScriptContent = `
@@ -52,29 +45,25 @@ function MyApp({ Component, pageProps }) {
       document.body.appendChild(customScript);
     };
 
+    // Load custom script after jQuery is loaded
+    document.getElementById('jquery').onload = loadCustomScript;
+
     // Cleanup function
     return () => {
-      scriptElements.forEach(script => {
-        document.body.removeChild(script);
+      scripts.forEach(({ id }) => {
+        const script = document.getElementById(id);
+        if (script) {
+          document.body.removeChild(script);
+        }
       });
     };
   }, []);
 
   return (
-    <>
-      <Head>
-        <title>Lafto Partners</title>
-        <link rel="stylesheet" href="/css/font-awesome.min.css" />
-        <link rel="stylesheet" href="/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/css/slick.css" />
-        <link rel="stylesheet" href="/css/style.css" id="main-css" />
-        <link rel="stylesheet" href="/css/responsive.css" id="responsive-css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-      </Head>
-      <ThemeProvider>
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </>
+    
+    <ThemeProvider>
+      <Component {...pageProps} />
+    </ThemeProvider>
   );
 }
 
