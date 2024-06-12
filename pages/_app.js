@@ -1,3 +1,6 @@
+// pages/_app.js
+import { ApolloProvider } from '@apollo/client';
+import client from '../lib/apolloClient';
 import { useEffect } from 'react';
 import { ThemeProvider } from '../lib/themeContext';
 import '../styles/globals.css'; // Global styles
@@ -26,28 +29,6 @@ function MyApp({ Component, pageProps }) {
 
     scripts.forEach(({ src, id }) => loadScript(src, id));
 
-    const loadCustomScript = () => {
-      const customScriptContent = `
-        "use strict";
-        $(document).ready(function() {
-          $('#ckLine').ckLine({
-            strokeColor: "#1d1d1d",
-            strokeWidth: 1,
-            leftRight: true,
-            easing: 'swing',
-            interval: 80,
-          });
-        });
-      `;
-      const customScript = document.createElement('script');
-      customScript.type = 'text/javascript';
-      customScript.innerHTML = customScriptContent;
-      document.body.appendChild(customScript);
-    };
-
-    // Load custom script after jQuery is loaded
-    document.getElementById('jquery').onload = loadCustomScript;
-
     // Cleanup function
     return () => {
       scripts.forEach(({ id }) => {
@@ -60,10 +41,11 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
-    
-    <ThemeProvider>
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <ApolloProvider client={client}>
+      <ThemeProvider>
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </ApolloProvider>
   );
 }
 

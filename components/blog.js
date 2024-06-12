@@ -1,86 +1,132 @@
+import { useEffect } from 'react';
+import { useQuery, gql } from '@apollo/client';
 
-import Link from 'next/link';
 
+const GET_BLOG_POSTS = gql`
+  query GetBlogPosts {
+    posts(first: 5) {
+      nodes {
+        title
+        excerpt
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+      }
+    }
+  }
+`;
 
 function Blog() {
-  return (
-<section id="blog">
-    <div class="container">
- 
-        <div class="row header-text text-center blog-header">
-            <div class="col-lg-12">
-                <h3>BL<span>O</span>G</h3>
-            </div>
-        </div>
- 
-        <div class="row blog-pa">
-            <div class="col-lg-8">
-                <div class="blog-main">
-             
-                    <div class="col-lg-6 blog-item">
-                        <div class="blog-shadow">
-                            <img src="images/blog1.jpg" alt="blog-img" class="img-fluid w-100"/>
-                            <div class="blog-item-txt">
-                                <h3>Effective Marketing Strategies</h3>
-                                <p>Explore the top marketing strategies that can boost your brand's visibility and engagement.</p>
-                                <a href="index2#">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-            
-                    <div class="col-lg-6 blog-item">
-                        <div class="blog-shadow">
-                            <img src="images/blog4.jpg" alt="blog-img" class="img-fluid w-100"/>
-                            <div class="blog-item-txt">
-                                <h3>Building a Strong Brand Identity</h3>
-                                <p>Learn how to create a memorable brand identity that resonates with your audience.</p>
-                                <a href="index2#">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-        
-                    <div class="col-lg-6 blog-item">
-                        <div class="blog-shadow">
-                            <img src="images/blog3.jpg" alt="blog-img" class="img-fluid w-100"/>
-                            <div class="blog-item-txt">
-                                <h3>Success Stories from Our Clients</h3>
-                                <p>Discover the success stories of our clients and how we helped them achieve their goals.</p>
-                                <a href="index2#">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-   
-            <div class="col-lg-4 col-md-10 m-md-auto blog-text">
-          
-                <form>
-                    <div class="input-group contact-input mb-3">
-                        <input type="text" class="form-control box-bg" placeholder="Search here..." aria-label="Search"/>
-                        <button type="submit" class="search-btn"><i class="fa fa-search" aria-hidden="true"></i></button>
-                    </div>
-                </form>
-            
-                <div class="tags">
-                    <h4>Hash Tags</h4>
-                    <a href="index2#">Marketing</a>
-                    <a href="index2#">Branding</a>
-                    <a href="index2#">Success</a>
-                    <div class="tag-pa">
-                        <a href="index2#">Strategy</a>
-                        <a href="index2#">Digital</a>
-                        <a href="index2#">Growth</a>
-                    </div>
-                    <div class="tag-pa">
-                        <a href="index2#">Creative</a>
-                        <a href="index2#">Innovation</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+  const { loading, error, data } = useQuery(GET_BLOG_POSTS);
 
+  useEffect(() => {
+    if (!loading && !error && data) {
+      console.log(data); // Log data to check image URLs
+
+      $('.blog-main').slick({
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        speed: 2000,
+        arrows: false,
+        centerMode: true,
+        centerPadding: '0px',
+        focusOnSelect: true,
+        responsive: [
+          {
+            breakpoint: 576,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+            },
+          },
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+            },
+          },
+          {
+            breakpoint: 992,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+            },
+          },
+        ],
+      });
+    }
+  }, [loading, error, data]);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  return (
+    <section id="blog">
+      <div className="container">
+        <div className="row header-text text-center blog-header">
+          <div className="col-lg-12">
+            <h3>BL<span>O</span>G</h3>
+          </div>
+        </div>
+        <div className="row blog-pa">
+          <div className="col-lg-8">
+            <div className="blog-main">
+              {data.posts.nodes.map((post, index) => (
+                <div key={index} className="col-lg-6 blog-item">
+                  <div className="blog-shadow">
+                    <img
+                      src={post.featuredImage?.node?.sourceUrl}
+                      alt="blog-img"
+                      className="img-fluid w-100"
+                    />
+                    <div className="blog-item-txt">
+                      <h3>{post.title}</h3>
+                      <p dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+                      <a href="#">Read More</a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="col-lg-4 col-md-10 m-md-auto blog-text">
+            <form>
+              <div className="input-group contact-input mb-3">
+                <input
+                  type="text"
+                  className="form-control box-bg"
+                  placeholder="Search here..."
+                  aria-label="Search"
+                />
+                <button type="submit" className="search-btn">
+                  <i className="fa fa-search" aria-hidden="true"></i>
+                </button>
+              </div>
+            </form>
+            <div className="tags">
+              <h4>Hash Tags</h4>
+              <a href="#">Marketing</a>
+              <a href="#">Branding</a>
+              <a href="#">Success</a>
+              <div className="tag-pa">
+                <a href="#">Strategy</a>
+                <a href="#">Digital</a>
+                <a href="#">Growth</a>
+              </div>
+              <div className="tag-pa">
+                <a href="#">Creative</a>
+                <a href="#">Innovation</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
