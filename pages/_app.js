@@ -1,23 +1,25 @@
-// pages/_app.js
 import { ApolloProvider } from '@apollo/client';
 import client from '../lib/apolloClient';
 import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { ThemeProvider } from '../lib/themeContext';
 import '../styles/globals.css'; // Global styles
 
-function MyApp({ Component, pageProps }) {
-  useEffect(() => {
-    const loadScript = (src, id, callback) => {
-      if (!document.getElementById(id)) {
-        const script = document.createElement('script');
-        script.src = src;
-        script.id = id;
-        script.async = true;
-        script.onload = callback;
-        document.body.appendChild(script);
-      }
-    };
+function loadScript(src, id, callback) {
+  if (!document.getElementById(id)) {
+    const script = document.createElement('script');
+    script.src = src;
+    script.id = id;
+    script.async = true;
+    script.onload = callback;
+    document.body.appendChild(script);
+  }
+}
 
+function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+
+  useEffect(() => {
     const scripts = [
       { src: '/js/jquery-3.3.1.min.js', id: 'jquery' },
       { src: '/js/bootstrap.min.js', id: 'bootstrap' },
@@ -29,10 +31,23 @@ function MyApp({ Component, pageProps }) {
       { src: '/js/custom.js', id: 'custom' },
     ];
 
-    scripts.forEach(({ src, id }) => loadScript(src, id));
+    const loadAllScripts = () => {
+      scripts.forEach(({ src, id }) => loadScript(src, id));
+    };
+
+    // Load scripts on initial mount
+    loadAllScripts();
+
+    // Load scripts on route change complete
+    const handleRouteChange = () => {
+      loadAllScripts();
+    };
+
+    router.events.on('routeChangeComplete', handleRouteChange);
 
     // Cleanup function
     return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
       scripts.forEach(({ id }) => {
         const script = document.getElementById(id);
         if (script) {
@@ -40,7 +55,7 @@ function MyApp({ Component, pageProps }) {
         }
       });
     };
-  }, []);
+  }, [router.events]);
 
   return (
     <ApolloProvider client={client}>

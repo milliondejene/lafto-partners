@@ -1,17 +1,19 @@
-import Image from "next/image";
 import { ArrowUpIcon } from "@heroicons/react/24/solid";
+import Image from "next/image";
+
 function Banner() {
   const handleBackToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth", // Add smooth behavior for a smooth transition
+      behavior: "smooth",
     });
   };
 
   return (
     <section id="banner">
-      <div class=".particles-js-canvas-el" id="particles-js"></div>
-      <div class="design-layer"></div>
+      {/* Correct class name for particles.js canvas */}
+      <div className="particles-js-canvas-el" id="particles-js"></div>
+      <div className="design-layer"></div>
       <div
         className="backtotop"
         style={{
@@ -19,40 +21,48 @@ function Banner() {
           height: "50px",
           width: "50px",
           borderRadius: "100px",
+          position: "fixed",
+          bottom: "20px",
+          right: "20px",
+          backgroundColor: "#ffffff",
+          zIndex: "1000", // Ensure it's above other elements
         }}
+        onClick={handleBackToTop}
       >
-      <ArrowUpIcon
-  style={{
-    color: "hsl(0, 0%, 70%)", // Light gray for white background
-    height: "24px",
-    width: "24px",
-    position: "relative",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-  }}
-  fontWeight={800}
-  onClick={() => {
-    handleBackToTop();
-  }}
-/>
+        <ArrowUpIcon
+          style={{
+            color: "hsl(0, 0%, 70%)", // Light gray for white background
+            height: "24px",
+            width: "24px",
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        />
       </div>
-      <div class="container zindex">
-        <div class="row">
-          <div class="col-lg-7 banner-txt">
-          <h3>Unlock Your Potential with Lafto Partners</h3>
-      <p>
-        Lafto Partners is a leading marketing and consulting agency in Ethiopia. 
-        We specialize in strategic planning, creative services, and PR communications. 
-        With a deep understanding of Ethiopia's diverse culture, we craft 
-        strategies that connect and resonate.
-      </p>
-      <a href="index3#">Discover More</a>
+      <div className="container zindex">
+        <div className="row">
+          <div className="col-lg-7 banner-txt">
+            <h3>Unlock Your Potential with Lafto Partners</h3>
+            <p>
+              Lafto Partners is a leading marketing and consulting agency in
+              Ethiopia. We specialize in strategic planning, creative services,
+              and PR communications. With a deep understanding of Ethiopia's
+              diverse culture, we craft strategies that connect and resonate.
+            </p>
+            <a href="index3#">Discover More</a>
           </div>
-          <div class="col-lg-5">
-            <div class="banner-img">
-              <img src="images/banner.png" alt="banner-img"    width={900}
-        height={900} class="img-fluid" />
+          <div className="col-lg-5">
+            <div className="banner-img">
+              {/* Replace img tag with Next.js Image component */}
+              <Image
+                src="/images/banner.png"
+                alt="banner-img"
+                width={900}
+                height={900}
+                className="img-fluid"
+              />
             </div>
           </div>
         </div>
