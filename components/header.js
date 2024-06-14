@@ -13,7 +13,7 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
       <div className="container">
-        <a className="navbar-brand" href="index.html">
+        <a className="navbar-brand" href="/">
           <Image
             id="logo-img"
             src={logoSrc}
@@ -39,7 +39,7 @@ function Navbar() {
         >
           <ul className="navbar-nav ml-auto menu-item">
           <li className="nav-item">
-            <a className="nav-link" href="#banner">Home</a>
+            <a className="nav-link" href="/">Home</a>
           </li>
           <li className="nav-item">
             <a className="nav-link" href="#about">About Us</a>

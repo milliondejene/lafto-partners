@@ -8,19 +8,21 @@ import '../styles/globals.css'; // Global styles
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
     const loadScript = (src, id, callback) => {
-      const script = document.createElement('script');
-      script.src = src;
-      script.id = id;
-      script.async = true;
-      script.onload = callback;
-      document.body.appendChild(script);
+      if (!document.getElementById(id)) {
+        const script = document.createElement('script');
+        script.src = src;
+        script.id = id;
+        script.async = true;
+        script.onload = callback;
+        document.body.appendChild(script);
+      }
     };
 
     const scripts = [
       { src: '/js/jquery-3.3.1.min.js', id: 'jquery' },
       { src: '/js/bootstrap.min.js', id: 'bootstrap' },
-      { src: '/js/slick.min.js' },
-      { src: '/js/line.min.js' },
+      { src: '/js/slick.min.js', id: 'slick' },
+      { src: '/js/line.min.js', id: 'line' },
       { src: '/js/particles.js', id: 'particles' },
       { src: '/js/app.js', id: 'app' },
       { src: '/js/circular.js', id: 'circular' },

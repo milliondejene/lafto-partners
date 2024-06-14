@@ -1,11 +1,13 @@
+// components/BlogList.js
 import { useEffect } from 'react';
 import { useQuery, gql } from '@apollo/client';
-
+import Link from 'next/link';
 
 const GET_BLOG_POSTS = gql`
   query GetBlogPosts {
     posts(first: 5) {
       nodes {
+        id
         title
         excerpt
         featuredImage {
@@ -18,7 +20,7 @@ const GET_BLOG_POSTS = gql`
   }
 `;
 
-function Blog() {
+function BlogList() {
   const { loading, error, data } = useQuery(GET_BLOG_POSTS);
 
   useEffect(() => {
@@ -76,8 +78,8 @@ function Blog() {
         <div className="row blog-pa">
           <div className="col-lg-8">
             <div className="blog-main">
-              {data.posts.nodes.map((post, index) => (
-                <div key={index} className="col-lg-6 blog-item">
+              {data.posts.nodes.map((post) => (
+                <div key={post.id} className="col-lg-6 blog-item">
                   <div className="blog-shadow">
                     <img
                       src={post.featuredImage?.node?.sourceUrl}
@@ -87,7 +89,9 @@ function Blog() {
                     <div className="blog-item-txt">
                       <h3>{post.title}</h3>
                       <p dangerouslySetInnerHTML={{ __html: post.excerpt }} />
-                      <a href="#">Read More</a>
+                      <Link href={`/blog/${post.id}`}>
+                        Read More
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -130,4 +134,4 @@ function Blog() {
   );
 }
 
-export default Blog;
+export default BlogList;

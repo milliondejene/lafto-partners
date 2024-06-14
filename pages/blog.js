@@ -1,29 +1,23 @@
+// pages/blog.js
 import { useEffect, useState } from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import CopyRight from "../components/copyright";
-
-
-import Subcribe from "../components/subscribe";
+import BlogList from "../components/BlogList";
+import Subscribe from "../components/subscribe";
 
 export default function Blog() {
-  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
-  if (!mounted) return null;
   return (
     <>
       <Header />
-
-      <Subcribe/>
+      <BlogList />
+      <Subscribe />
       <footer>
         <Footer />
         <CopyRight />
       </footer>
-      
     </>
   );
 }

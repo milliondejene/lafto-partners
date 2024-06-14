@@ -69,4 +69,136 @@
       }
   }
   
-  /*Switcher demo styles*/
+  /* Blog Content Styles */
+
+
+.blog-top-section {
+  width: 80vw; /* Take full width of the viewport */
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.blog-post h1 {
+  font-size: 2.5em;
+  color: #2c3e50;
+  width: 100%;
+}
+
+.featured-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.post-content {
+  font-size: 1.125em;
+  color: #444;
+  margin-bottom: 90px;
+}
+
+.post-content p {
+  margin-bottom: 20px;
+}
+
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+
+.post-content video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+
+.post-content blockquote {
+  border-left: 4px solid #ccc;
+  padding-left: 20px;
+  margin: 20px 0;
+  color: #666;
+  font-style: italic;
+}
+
+.post-content ul, .post-content ol {
+  margin: 20px 0;
+  padding-left: 40px;
+}
+
+.post-content a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.post-content a:hover {
+  text-decoration: underline;
+}
+
+.post-content pre {
+  background: #f4f4f4;
+  padding: 20px;
+  overflow-x: auto;
+  border-radius: 4px;
+}
+
+.post-content code {
+  background: #f4f4f4;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.blog-shadow img {
+  border-bottom: 1px solid #ddd;
+}
+
+.blog-item-txt a:hover {
+  text-decoration: underline;
+}
+
+/* Sidebar Styles */
+.blog-text {
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.contact-input .box-bg {
+  border-radius: 0;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.contact-input .search-btn {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.tags h4 {
+  font-size: 1.5em;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+/* Make the sidebar sticky and align it with the blog post */
+.blog-text {
+  position: sticky;
+  top: 20px;
+  align-self: flex-start;
+}
+
+@media (max-width: 992px) {
+  .blog-text {
+    position: static;
+    top: auto;
+  }
+}
