@@ -3,53 +3,46 @@ import client from '../lib/apolloClient';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { ThemeProvider } from '../lib/themeContext';
+import Script from 'next/script';
 import '../styles/globals.css'; // Global styles
-
-function loadScript(src, id, callback) {
-  if (!document.getElementById(id)) {
-    const script = document.createElement('script');
-    script.src = src;
-    script.id = id;
-    script.async = true;
-    script.onload = callback;
-    document.body.appendChild(script);
-  }
-}
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
 
   useEffect(() => {
-    const scripts = [
-      { src: '/js/jquery-3.3.1.min.js', id: 'jquery' },
-      { src: '/js/bootstrap.min.js', id: 'bootstrap' },
-      { src: '/js/slick.min.js', id: 'slick' },
-      { src: '/js/line.min.js', id: 'line' },
-      { src: '/js/particles.js', id: 'particles' },
-      { src: '/js/app.js', id: 'app' },
-      { src: '/js/circular.js', id: 'circular' },
-      { src: '/js/custom.js', id: 'custom' },
+    const scriptsToLoad = [
+      '/js/jquery-3.3.1.min.js',
+      '/js/bootstrap.min.js',
+      '/js/slick.min.js',
+      '/js/line.min.js',
+      '/js/particles.js',
+      '/js/app.js',
+      '/js/circular.js',
+      '/js/custom.js'
     ];
 
-    const loadAllScripts = () => {
-      scripts.forEach(({ src, id }) => loadScript(src, id));
+    const loadScriptsOnRouteChange = () => {
+      scriptsToLoad.forEach(src => {
+        const scriptId = src.split('/').pop();
+        if (!document.getElementById(scriptId)) {
+          const script = document.createElement('script');
+          script.src = src;
+          script.id = scriptId;
+          script.async = true;
+          document.body.appendChild(script);
+        }
+      });
     };
-
-    // Load scripts on initial mount
-    loadAllScripts();
 
     // Load scripts on route change complete
-    const handleRouteChange = () => {
-      loadAllScripts();
-    };
-
-    router.events.on('routeChangeComplete', handleRouteChange);
+    router.events.on('routeChangeComplete', loadScriptsOnRouteChange);
 
     // Cleanup function
     return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-      scripts.forEach(({ id }) => {
-        const script = document.getElementById(id);
+      router.events.off('routeChangeComplete', loadScriptsOnRouteChange);
+      scriptsToLoad.forEach(src => {
+        const scriptId = src.split('/').pop();
+        const script = document.getElementById(scriptId);
         if (script) {
           document.body.removeChild(script);
         }
@@ -60,6 +53,16 @@ function MyApp({ Component, pageProps }) {
   return (
     <ApolloProvider client={client}>
       <ThemeProvider>
+        {/* Load essential scripts using next/script for optimized loading */}
+        <Script src="/js/jquery-3.3.1.min.js" strategy="beforeInteractive" />
+        <Script src="/js/bootstrap.min.js" strategy="beforeInteractive" />
+        <Script src="/js/slick.min.js" strategy="lazyOnload" />
+        <Script src="/js/line.min.js" strategy="lazyOnload" />
+        <Script src="/js/particles.js" strategy="lazyOnload" />
+        <Script src="/js/app.js" strategy="lazyOnload" />
+        <Script src="/js/circular.js" strategy="lazyOnload" />
+        <Script src="/js/custom.js" strategy="lazyOnload" />
+
         <Component {...pageProps} />
       </ThemeProvider>
     </ApolloProvider>

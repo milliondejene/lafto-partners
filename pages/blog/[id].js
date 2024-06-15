@@ -1,11 +1,14 @@
 import { useRouter } from "next/router";
 import { useQuery, gql } from "@apollo/client";
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import CopyRight from "../../components/copyright";
-import Subscribe from "../../components/subscribe";
 import Link from "next/link";
+
+// Dynamic import for Subscribe component to improve performance
+const Subscribe = dynamic(() => import("../../components/subscribe"), { ssr: false });
 
 const GET_BLOG_POST = gql`
   query GetBlogPost($id: ID!) {
@@ -41,70 +44,64 @@ const BlogPost = () => {
     variables: { id },
   });
 
-  // UseEffect to initialize scripts or plugins
   useEffect(() => {
     if (!loading && !error && data) {
       console.log(data); // Log data to check image URLs
 
       // Initialize scripts or plugins here (e.g., sliders)
-      $(".blog-main").slick({
-        slidesToShow: 2,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 3000,
-        speed: 2000,
-        arrows: false,
-        centerMode: true,
-        centerPadding: "0px",
-        focusOnSelect: true,
-        responsive: [
-          {
-            breakpoint: 576,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
-            },
-          },
-          {
-            breakpoint: 768,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 1,
-            },
-          },
-          {
-            breakpoint: 992,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 1,
-            },
-          },
-        ],
-      });
+      if (typeof window !== "undefined") {
+          $(".blog-main").slick({
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            speed: 2000,
+            arrows: false,
+            centerMode: true,
+            centerPadding: "0px",
+            focusOnSelect: true,
+            responsive: [
+              {
+                breakpoint: 576,
+                settings: {
+                  slidesToShow: 1,
+                  slidesToScroll: 1,
+                },
+              },
+              {
+                breakpoint: 768,
+                settings: {
+                  slidesToShow: 2,
+                  slidesToScroll: 1,
+                },
+              },
+              {
+                breakpoint: 992,
+                settings: {
+                  slidesToShow: 2,
+                  slidesToScroll: 1,
+                },
+              },
+            ],
+          });
+        
+      }
     }
   }, [loading, error, data]);
 
-
-  // Handle loading and error states
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  // Destructure data once loading is complete
   const { post, posts } = data;
 
-  // Styles for components
   const blogHeadingStyles = {
     fontSize: "2.5rem",
     lineHeight: "1.2",
     padding: "20px",
-
-    "@media (maxWidth: 768px)": {
-      fontSize: "2rem",
-      padding: "10px",
-    },
   };
+
   const blogTitleStyles = {
-    width: "80vw",
+    width: "auto",
     marginBottom: "30px",
     alignItems: "center",
     display: "flex",
@@ -113,10 +110,6 @@ const BlogPost = () => {
     fontWeight: "bold",
     lineHeight: "1.2",
     padding: "20px",
-    "@media (maxWidth: 768px)": {
-      fontSize: "2rem",
-      padding: "10px",
-    },
   };
 
   return (
@@ -132,7 +125,7 @@ const BlogPost = () => {
             </div>
           </div>
           <div className="row blog-pa">
-            <div className="col-lg-8 blog-content">
+            <div className="title-image-container">
               <h1 style={blogTitleStyles}>{post.title}</h1>
               {post.featuredImage?.node?.sourceUrl && (
                 <div className="blog-top-section">
@@ -143,13 +136,14 @@ const BlogPost = () => {
                   />
                 </div>
               )}
+            </div>
+            <div className="col-lg-8 blog-content">
               <div className="blog-post">
                 <div
                   className="post-content"
                   dangerouslySetInnerHTML={{ __html: post.content }}
                 />
               </div>
-
               <div className="blog-main">
                 {posts.nodes.map((post) => (
                   <div key={post.id} className="col-lg-6 blog-item">
