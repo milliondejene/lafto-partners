@@ -179,16 +179,24 @@ const BlogPost = () => {
                     height={400} // Adjust accordingly
                     layout="responsive"
                   />
-                  <div style={{ position: "absolute", top: "120px", width: "100%", textAlign: "center" }}>
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "120px",
+                      width: "100%",
+                      textAlign: "center",
+                    }}
+                  >
                     <h1 style={blogTitleStyles}>{post.title}</h1>
                   </div>
                 </div>
               )}
             </div>
 
-            <div className="col-lg-8 blog-content">
+            <div className="col-lg-12 blog-content">
               <p style={postMetaStyles}>
-                {formatDate(post.date)} <span>&mdash; by {post.author.node.name}</span>
+                {formatDate(post.date)}{" "}
+                <span>&mdash; by {post.author.node.name}</span>
                 {category && category.name !== "Uncategorized" && (
                   <span> in {category.name}</span>
                 )}
@@ -199,62 +207,26 @@ const BlogPost = () => {
                   dangerouslySetInnerHTML={{ __html: post.content }}
                 />
               </div>
+            </div>
+            <div class="col-lg-12">
               <div className="blog-main">
                 {posts.nodes.map((post) => (
-                  <div key={post.id} className="blog-item">
-                    <div className="blog-shadow">
-                      <Image
-                        src={
-                          post.featuredImage?.node?.sourceUrl ||
-                          "/default-image.jpg"
-                        }
-                        alt="blog-img"
-                        width={400} // Adjust accordingly
-                        height={210} // Adjust accordingly
-                        layout="responsive"
-                        objectFit="cover"
+                  <div key={post.id} className="col-lg-4 blog-item" style={{width:'30px'}}>
+                    <img
+                      src={post.featuredImage?.node?.sourceUrl}
+                      alt="blog-img"
+                      className="img-fluid w-100"
+                    />
+                    <div className="blog-item-txt">
+                      <h3>{post.title}</h3>
+                      <p
+                        className="excerpt"
+                        dangerouslySetInnerHTML={{ __html: post.excerpt }}
                       />
-                      <div className="blog-item-txt">
-                        <h3>{post.title}</h3>
-                        <p
-                          className="excerpt"
-                          dangerouslySetInnerHTML={{ __html: post.excerpt }}
-                        />
-                        <Link href={`/blog/${post.id}`}>Read More</Link>
-                      </div>
+                      <Link href={`/blog/${post.id}`}>Read More</Link>
                     </div>
                   </div>
                 ))}
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-10 blog-text">
-              <form>
-                <div className="input-group contact-input mb-3">
-                  <input
-                    type="text"
-                    className="form-control box-bg"
-                    placeholder="Search here..."
-                    aria-label="Search"
-                  />
-                  <button type="submit" className="search-btn">
-                    <i className="fa fa-search" aria-hidden="true"></i>
-                  </button>
-                </div>
-              </form>
-              <div className="tags">
-                <h4>Hash Tags</h4>
-                <a href="#">Marketing</a>
-                <a href="#">Branding</a>
-                <a href="#">Success</a>
-                <div className="tag-pa">
-                  <a href="#">Strategy</a>
-                  <a href="#">Digital</a>
-                  <a href="#">Growth</a>
-                </div>
-                <div className="tag-pa">
-                  <a href="#">Creative</a>
-                  <a href="#">Innovation</a>
-                </div>
               </div>
             </div>
           </div>

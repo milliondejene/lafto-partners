@@ -23,7 +23,11 @@ export default function Document() {
         <script src="/js/app.js"></script>
         <script src="/js/circular.js"></script>
         <script src="/js/custom.js"></script>
- 
+        <script
+          src="https://code.jquery.com/jquery-3.6.0.min.js"
+          integrity="sha256-KyZXEAg3QhqLMpG8r+Knujsl5+5hb7ie6VN+6LlN3ik="
+          crossOrigin="anonymous"
+        ></script>
         
       </body>
     </Html>

@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
-import { useQuery, gql } from '@apollo/client';
-import Link from 'next/link';
+import { useEffect } from "react";
+import { useQuery, gql } from "@apollo/client";
+import Link from "next/link";
 
 const GET_BLOG_POSTS = gql`
   query GetBlogPosts {
@@ -26,7 +26,7 @@ function BlogList() {
     if (!loading && !error && data) {
       console.log(data); // Log data to check image URLs
 
-      $('.blog-main').slick({
+      $(".blog-main").slick({
         slidesToShow: 2,
         slidesToScroll: 1,
         autoplay: true,
@@ -34,7 +34,7 @@ function BlogList() {
         speed: 2000,
         arrows: false,
         centerMode: true,
-        centerPadding: '0px',
+        centerPadding: "0px",
         focusOnSelect: true,
         responsive: [
           {
@@ -71,27 +71,28 @@ function BlogList() {
       <div className="container">
         <div className="row header-text text-center blog-header">
           <div className="col-lg-12">
-            <h3>BL<span>O</span>G</h3>
+            <h3>
+              BL<span>O</span>G
+            </h3>
           </div>
         </div>
         <div className="row blog-pa">
           <div className="col-lg-8">
             <div className="blog-main">
               {data?.posts.nodes.map((post) => (
-                <div key={post.id} className="col-lg-6 blog-item">
-                  <div className="blog-shadow">
-                    <img
-                      src={post.featuredImage?.node?.sourceUrl}
-                      alt="blog-img"
-                      className="img-fluid w-100"
+                <div key={post.id} className="col-lg-8 blog-item">
+                  <img
+                    src={post.featuredImage?.node?.sourceUrl}
+                    alt="blog-img"
+                    className="img-fluid w-100"
+                  />
+                  <div className="blog-item-txt">
+                    <h3>{post.title}</h3>
+                    <p
+                      className="excerpt"
+                      dangerouslySetInnerHTML={{ __html: post.excerpt }}
                     />
-                    <div className="blog-item-txt">
-                      <h3>{post.title}</h3>
-                      <p className="excerpt" dangerouslySetInnerHTML={{ __html: post.excerpt }} />
-                      <Link href={`/blog/${post.id}`}>
-                        Read More
-                      </Link>
-                    </div>
+                    <Link href={`/blog/${post.id}`}>Read More</Link>
                   </div>
                 </div>
               ))}
