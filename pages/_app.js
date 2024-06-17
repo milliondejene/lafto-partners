@@ -1,13 +1,16 @@
+// pages/_app.js
 import { ApolloProvider } from '@apollo/client';
 import client from '../lib/apolloClient';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { ThemeProvider } from '../lib/themeContext';
 import Script from 'next/script';
+import Preloader from '../components/Preloader';
 import '../styles/globals.css'; // Global styles
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const scriptsToLoad = [
@@ -34,12 +37,22 @@ function MyApp({ Component, pageProps }) {
       });
     };
 
-    // Load scripts on route change complete
-    router.events.on('routeChangeComplete', loadScriptsOnRouteChange);
+    const handleRouteChangeComplete = () => {
+      setLoading(false);
+      loadScriptsOnRouteChange();
+    };
+
+    router.events.on('routeChangeComplete', handleRouteChangeComplete);
+
+    // Initial script load and initial preloader delay
+    setLoading(true);
+    loadScriptsOnRouteChange();
+    const initialLoadTimer = setTimeout(() => setLoading(false), 2000);
 
     // Cleanup function
     return () => {
-      router.events.off('routeChangeComplete', loadScriptsOnRouteChange);
+      clearTimeout(initialLoadTimer);
+      router.events.off('routeChangeComplete', handleRouteChangeComplete);
       scriptsToLoad.forEach(src => {
         const scriptId = src.split('/').pop();
         const script = document.getElementById(scriptId);
@@ -53,7 +66,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ApolloProvider client={client}>
       <ThemeProvider>
-        {/* Load essential scripts using next/script for optimized loading */}
+        {loading && <Preloader />}
         <Script src="/js/jquery-3.3.1.min.js" strategy="beforeInteractive" />
         <Script src="/js/bootstrap.min.js" strategy="beforeInteractive" />
         <Script src="/js/slick.min.js" strategy="lazyOnload" />
@@ -62,7 +75,6 @@ function MyApp({ Component, pageProps }) {
         <Script src="/js/app.js" strategy="lazyOnload" />
         <Script src="/js/circular.js" strategy="lazyOnload" />
         <Script src="/js/custom.js" strategy="lazyOnload" />
-
         <Component {...pageProps} />
       </ThemeProvider>
     </ApolloProvider>

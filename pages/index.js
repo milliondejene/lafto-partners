@@ -44,7 +44,7 @@ const Home = () => {
         <Footer />
         <CopyRight />
       </footer>
-    </>
+</>
   );
 };
 

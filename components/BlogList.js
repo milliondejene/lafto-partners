@@ -1,4 +1,3 @@
-// components/BlogList.js
 import { useEffect } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import Link from 'next/link';
@@ -78,7 +77,7 @@ function BlogList() {
         <div className="row blog-pa">
           <div className="col-lg-8">
             <div className="blog-main">
-              {data.posts.nodes.map((post) => (
+              {data?.posts.nodes.map((post) => (
                 <div key={post.id} className="col-lg-6 blog-item">
                   <div className="blog-shadow">
                     <img
@@ -88,7 +87,7 @@ function BlogList() {
                     />
                     <div className="blog-item-txt">
                       <h3>{post.title}</h3>
-                      <p dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+                      <p className="excerpt" dangerouslySetInnerHTML={{ __html: post.excerpt }} />
                       <Link href={`/blog/${post.id}`}>
                         Read More
                       </Link>
