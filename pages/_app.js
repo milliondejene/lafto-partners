@@ -37,21 +37,26 @@ function MyApp({ Component, pageProps }) {
       });
     };
 
+    const handleRouteChangeStart = () => {
+      setLoading(true);
+    };
+
     const handleRouteChangeComplete = () => {
       setLoading(false);
       loadScriptsOnRouteChange();
     };
 
+    router.events.on('routeChangeStart', handleRouteChangeStart);
     router.events.on('routeChangeComplete', handleRouteChangeComplete);
 
     // Initial script load and initial preloader delay
-    setLoading(true);
     loadScriptsOnRouteChange();
     const initialLoadTimer = setTimeout(() => setLoading(false), 2000);
 
     // Cleanup function
     return () => {
       clearTimeout(initialLoadTimer);
+      router.events.off('routeChangeStart', handleRouteChangeStart);
       router.events.off('routeChangeComplete', handleRouteChangeComplete);
       scriptsToLoad.forEach(src => {
         const scriptId = src.split('/').pop();

@@ -1,10 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTheme } from "../lib/themeContext";
-import Preloader from "./Preloader.js";
+import Preloader from "./Preloader";
 import { useRouter } from "next/router";
 
 function Navbar() {
@@ -14,6 +13,8 @@ function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const logoSrc = theme === "light" ? "/images/logob.png" : "/images/logo.png";
   const router = useRouter();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navRef = useRef(null);
 
   const handleToggleTheme = () => {
     setIsLoading(true);
@@ -23,30 +24,32 @@ function Navbar() {
     }, 1000); // Adjust the timeout as needed
   };
 
-  const handleNavigateToProduct = () => {
+  const handleNavigate = (hash) => {
     const baseUrl = window.location.origin;
-    window.location.href = `${baseUrl}/#product`;
-  };
-  const handleNavigateToAbout = () => {
-    const baseUrl = window.location.origin;
-    window.location.href = `${baseUrl}/#about`;
+    window.location.href = `${baseUrl}/${hash}`;
   };
 
-  const handleNavigateToGallery = () => {
-    const baseUrl = window.location.origin;
-    window.location.href = `${baseUrl}/#gallery`;
+  const handleToggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleNavigateToBlog = () => {
-    const baseUrl = window.location.origin;
-    window.location.href = `${baseUrl}/#blog`;
+  const handleClickOutside = (event) => {
+    if (navRef.current && !navRef.current.contains(event.target)) {
+      setIsMenuOpen(false);
+    }
   };
 
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
       {isLoading && <Preloader />}
-      <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+      <nav ref={navRef} className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <div className="container">
           <a className="navbar-brand" href="/">
             <Image
@@ -61,16 +64,15 @@ function Navbar() {
           <button
             className="navbar-toggler"
             type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent"
-            aria-expanded="false"
+            aria-expanded={isMenuOpen ? "true" : "false"}
             aria-label="Toggle navigation"
+            onClick={handleToggleMenu}
           >
             <i className="fa fa-bars" aria-hidden="true"></i>
           </button>
           <div
-            className="collapse navbar-collapse menu-main"
+            className={`collapse navbar-collapse menu-main ${isMenuOpen ? "show" : ""}`}
             id="navbarSupportedContent"
           >
             <ul className="navbar-nav ml-auto menu-item">
@@ -78,35 +80,35 @@ function Navbar() {
                 <a className="nav-link" href="/">Home</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#about" onClick={handleNavigateToAbout}>About Us</a>
+                <a className="nav-link" href="#about" onClick={() => handleNavigate('#about')}>About Us</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#gallery" onClick={handleNavigateToGallery}>Gallery</a>
+                <a className="nav-link" href="#gallery" onClick={() => handleNavigate('#gallery')}>Gallery</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#product" onClick={handleNavigateToProduct}>Products</a>
+                <a className="nav-link" href="#product" onClick={() => handleNavigate('#product')}>Products</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#blog" onClick={handleNavigateToBlog}>Blog</a>
+                <a className="nav-link" href="#blog" onClick={() => handleNavigate('#blog')}>Blog</a>
               </li>
               <li className="nav-item">
-                <button
+                <a
                   className="nav-link"
                   onClick={handleToggleTheme}
                   style={{
                     background: "none",
                     border: "none",
                     cursor: "pointer",
-                    padding: 0,
+                    paddingLeft:"15px",
                   }}
                 >
                   <i
                     className={`fa ${
                       theme === "light" ? "fa-toggle-off" : "fa-toggle-on"
                     }`}
-                    style={{ margin: 10, fontSize: "28px" }}
+                    style={{ marginLeft: "10px", fontSize: "28px" }}
                   ></i>
-                </button>
+                </a>
               </li>
             </ul>
           </div>
