@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useQuery, gql } from "@apollo/client";
 import Link from "next/link";
+import $ from 'jquery';
+import 'slick-carousel';
 
 const GET_BLOG_POSTS = gql`
   query GetBlogPosts {
@@ -68,19 +70,18 @@ function BlogList() {
 
   return (
     <section id="blog">
-      <div className="container">
-        <div className="row header-text text-center blog-header">
-          <div className="col-lg-12">
-            <h3>
-              BL<span>O</span>G
-            </h3>
-          </div>
+    <div className="container">
+      <div className="row header-text text-center blog-header">
+        <div className="col-lg-12">
+          <h3>BL<span>O</span>G</h3>
         </div>
-        <div className="row blog-pa">
-          <div className="col-lg-8">
-            <div className="blog-main">
-              {data?.posts.nodes.map((post) => (
-                <div key={post.id} className="col-lg-8 blog-item">
+      </div>
+      <div className="row blog-pa">
+        <div className="col-lg-8">
+          <div className="blog-main">
+            {data?.posts.nodes.map((post) => (
+              <div key={post.id} className="col-lg-6 blog-item" >
+                <div className="blog-shadow" style={{width:"280px"}}>
                   <img
                     src={post.featuredImage?.node?.sourceUrl}
                     alt="blog-img"
@@ -88,49 +89,49 @@ function BlogList() {
                   />
                   <div className="blog-item-txt">
                     <h3>{post.title}</h3>
-                    <p
-                      className="excerpt"
-                      dangerouslySetInnerHTML={{ __html: post.excerpt }}
-                    />
-                    <Link href={`/blog/${post.id}`}>Read More</Link>
+                    <p className="excerpt" dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+                    <Link href={`/blog/${post.id}`}>
+                      Read More
+                    </Link>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-          <div className="col-lg-4 col-md-10 m-md-auto blog-text">
-            <form>
-              <div className="input-group contact-input mb-3">
-                <input
-                  type="text"
-                  className="form-control box-bg"
-                  placeholder="Search here..."
-                  aria-label="Search"
-                />
-                <button type="submit" className="search-btn">
-                  <i className="fa fa-search" aria-hidden="true"></i>
-                </button>
-              </div>
-            </form>
-            <div className="tags">
-              <h4>Hash Tags</h4>
-              <a href="#">Marketing</a>
-              <a href="#">Branding</a>
-              <a href="#">Success</a>
-              <div className="tag-pa">
-                <a href="#">Strategy</a>
-                <a href="#">Digital</a>
-                <a href="#">Growth</a>
-              </div>
-              <div className="tag-pa">
-                <a href="#">Creative</a>
-                <a href="#">Innovation</a>
-              </div>
+        </div>
+        <div className="col-lg-4 col-md-10 m-md-auto blog-text">
+          <form>
+            <div className="input-group contact-input mb-3">
+              <input
+                type="text"
+                className="form-control box-bg"
+                placeholder="Search here..."
+                aria-label="Search"
+              />
+              <button type="submit" className="search-btn">
+                <i className="fa fa-search" aria-hidden="true"></i>
+              </button>
+            </div>
+          </form>
+          <div className="tags">
+            <h4>Hash Tags</h4>
+            <a href="#">Marketing</a>
+            <a href="#">Branding</a>
+            <a href="#">Success</a>
+            <div className="tag-pa">
+              <a href="#">Strategy</a>
+              <a href="#">Digital</a>
+              <a href="#">Growth</a>
+            </div>
+            <div className="tag-pa">
+              <a href="#">Creative</a>
+              <a href="#">Innovation</a>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
   );
 }
 

@@ -27,6 +27,21 @@ function Navbar() {
     const baseUrl = window.location.origin;
     window.location.href = `${baseUrl}/#product`;
   };
+  const handleNavigateToAbout = () => {
+    const baseUrl = window.location.origin;
+    window.location.href = `${baseUrl}/#about`;
+  };
+
+  const handleNavigateToGallery = () => {
+    const baseUrl = window.location.origin;
+    window.location.href = `${baseUrl}/#gallery`;
+  };
+
+  const handleNavigateToBlog = () => {
+    const baseUrl = window.location.origin;
+    window.location.href = `${baseUrl}/#blog`;
+  };
+
 
   return (
     <>
@@ -63,16 +78,16 @@ function Navbar() {
                 <a className="nav-link" href="/">Home</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#about">About Us</a>
+                <a className="nav-link" href="#about" onClick={handleNavigateToAbout}>About Us</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#gallery">Gallery</a>
+                <a className="nav-link" href="#gallery" onClick={handleNavigateToGallery}>Gallery</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#product" onClick={handleNavigateToProduct}>Products</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#blog">Blog</a>
+                <a className="nav-link" href="#blog" onClick={handleNavigateToBlog}>Blog</a>
               </li>
               <li className="nav-item">
                 <button
