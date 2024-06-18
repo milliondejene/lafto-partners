@@ -46,7 +46,7 @@ function Product() {
           </div>
         </div>
         <div className="row">
-        products ---------------------___--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        products -----------
         </div>
       </div>
     </section>

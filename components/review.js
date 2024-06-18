@@ -3,7 +3,7 @@ import Link from "next/link";
 function Review() {
   return (
     <section id="review">
-      <div>Clients ______________++++++++++++++++++++~~~~~~~~~~~~~~~~~~~~~~~</div>
+      <div>Clients _</div>
       <div className="container">
         <div className="row header-text text-center">
           <div className="col-lg-12">
