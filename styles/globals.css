@@ -312,3 +312,38 @@
   max-height: 300px;
   object-fit: cover;
 }
+.pro-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap; /* Prevents wrapping to a new line */
+}
+
+.pro-info .col-lg-6 {
+  display: flex;
+  align-items: center;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+}
+
+.icon-container .fa {
+  margin-left: 10px;
+}
+
+@media (max-width: 991px) {
+  .pro-info {
+    flex-wrap: nowrap; /* Allow wrapping on smaller screens */
+  }
+
+  .pro-info .col-lg-6 {
+    flex: 0 0 100%; /* Take full width on smaller screens */
+    margin-bottom: 10px; /* Optional: Add margin between rows */
+  }
+
+  .pro-info .col-lg-6 span {
+    margin-bottom: 0; /* Optional: Remove bottom margin from the span */
+  }
+}

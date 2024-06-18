@@ -33,18 +33,20 @@ function Team() {
                       <Link href="index2#">{person.role}</Link>
                     </div>
                     <div className="row pro-info">
-                      <div className="col-lg-6 col-sm-5 col-6">
-                        <span>Contact</span>
-                      </div>
-                      <div className="col-lg-6">
-                        <Link href="mailto:example@example.com">
-                          <i style={{ marginRight: "10px", color: '#c18b28' }} className="fa fa-envelope clickable-icon" aria-hidden="true"></i>
-                        </Link>
-                        <Link href="/info-page">
-                          <i style={{ color: '#c18b28', fontSize:"14"}} className="fa fa-info-circle clickable-icon" aria-hidden="true"></i>
-                        </Link>
-                      </div>
-                    </div>
+  <div className="col-lg-6 col-sm-5 col-6" style={{marginLeft:"10px"}}>
+    <span>Contact</span>
+  </div>
+  <div className="" style={{marginRight:"25px"}}>
+    <div className="icon-container">
+      <Link href="mailto:example@example.com">
+        <i style={{ marginRight: '10px', color: '#c18b28', fontSize: '22px' }} className="fa fa-envelope clickable-icon" aria-hidden="true"></i>
+      </Link>
+      <Link href="/info-page">
+        <i style={{ color: '#c18b28', fontSize: '24px' }} className="fa fa-info-circle clickable-icon" aria-hidden="true"></i>
+      </Link>
+    </div>
+  </div>
+</div>
                   </div>
                 </div>
               ))}
