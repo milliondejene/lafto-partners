@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useQuery, gql } from "@apollo/client";
 import Link from "next/link";
-import $ from 'jquery';
-import 'slick-carousel';
+
 
 const GET_BLOG_POSTS = gql`
   query GetBlogPosts {

@@ -188,7 +188,7 @@ const BlogPost = () => {
                       textAlign: "center",
                     }}
                   >
-                    <h1 style={blogTitleStyles}>{post.title}</h1>
+                    <h1 className="blogTitleStyles">{post.title}</h1>
                   </div>
                 </div>
               )}
