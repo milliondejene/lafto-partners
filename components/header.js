@@ -21,7 +21,7 @@ function Navbar() {
     setTimeout(() => {
       toggleTheme();
       setIsLoading(false);
-    }, 1000); // Adjust the timeout as needed
+    }, 10000); // Adjust the timeout as needed
   };
 
   const handleNavigate = (hash) => {

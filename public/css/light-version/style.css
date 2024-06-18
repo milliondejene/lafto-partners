@@ -1110,12 +1110,10 @@ over-btn a i {
     margin-bottom: 30px;
 }
 
-.pro-img {
-    padding: 10px 20px;
-}
+
 
 .pro-img img {
-    border: 5px solid #c18b28;
+    border: 3px solid #c18b28;
     border-radius: 5%;
     display: inline-block;
 }

@@ -1,6 +1,15 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
+const teamMembers = [
+  { name: "Jessie Sundberg", role: "Copywriter", img: "/images/p9.jpg" },
+  { name: "Ephream Sileshi", role: "Account Manager", img: "/images/p2.jpg" },
+  { name: "Ariel Germond", role: "Social Media", img: "/images/p11.jpg" },
+  { name: "Argene", role: "Senior Designer", img: "/images/p8.jpg" },
+  { name: "Janna Sundberg", role: "Chief Editor", img: "/images/p7.jpg" },
+  { name: "Cherinet Kifle", role: "Project Manager", img: "/images/p6.jpg" }
+];
+
 function Team() {
   return (
     <section id="team">
@@ -13,14 +22,7 @@ function Team() {
         <div className="row">
           <div className="col-lg-12">
             <div className="product-main" style={{ marginTop: "80px" }}>
-              {[
-                { name: "Jessie Sundberg", role: "Copywriter", img: "/images/p9.jpg" },
-                { name: "Ephream Sileshi", role: "Account Manager", img: "/images/p2.jpg" },
-                { name: "Ariel Germond", role: "Social Media", img: "/images/p11.jpg" },
-                { name: "Argene", role: "Senior Designer", img: "/images/p8.jpg" },
-                { name: "Janna Sundberg", role: "Chief Editor", img: "/images/p7.jpg" },
-                { name: "Cherinet Kifle", role: "Project Manager", img: "/images/p6.jpg" }
-              ].map((person, index) => (
+              {teamMembers.map((person, index) => (
                 <div key={index} className="col-lg-3">
                   <div className="product-slider text-center">
                     <div className="pro-img">
@@ -39,7 +41,7 @@ function Team() {
                           <i style={{ marginRight: "10px", color: '#c18b28' }} className="fa fa-envelope clickable-icon" aria-hidden="true"></i>
                         </Link>
                         <Link href="/info-page">
-                          <i style={{ color: '#c18b28' }} className="fa fa-info-circle clickable-icon" aria-hidden="true"></i>
+                          <i style={{ color: '#c18b28', fontSize:"14"}} className="fa fa-info-circle clickable-icon" aria-hidden="true"></i>
                         </Link>
                       </div>
                     </div>

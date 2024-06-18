@@ -184,19 +184,10 @@
   border-radius: 4px;
 }
 
-.blog-shadow img {
-  border-bottom: 1px solid #ddd;
-}
+
 
 .blog-item-txt a:hover {
   text-decoration: underline;
-}
-
-/* Sidebar Styles */
-.blog-text {
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .contact-input .box-bg {
