@@ -3,11 +3,11 @@ import Image from 'next/image';
 
 const teamMembers = [
   { name: "Jessie Sundberg", role: "Copywriter", img: "/images/p9.jpg" },
-  { name: "Ephream Sileshi", role: "Account Manager", img: "/images/p2.jpg" },
+  { name: "Cherinet Kifle", role: "Project Manager", img: "/images/p6.jpg" },
   { name: "Ariel Germond", role: "Social Media", img: "/images/p11.jpg" },
   { name: "Argene", role: "Senior Designer", img: "/images/p8.jpg" },
   { name: "Janna Sundberg", role: "Chief Editor", img: "/images/p7.jpg" },
-  { name: "Cherinet Kifle", role: "Project Manager", img: "/images/p6.jpg" }
+  { name: "Ephream Sileshi", role: "Account Manager", img: "/images/p2.jpg" }
 ];
 
 function Team() {
