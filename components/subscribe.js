@@ -12,7 +12,7 @@ function Subscribe() {
                                 <h3>Stay Connected With Us</h3>
                             </div>
                             <div class="col-lg-3 col-md-5 subscripe-btn">
-                                <a href="index4#" data-toggle="modal" data-target="#exampleModal2">Subcribe Us</a>
+                                <a href="" data-toggle="modal" data-target="#exampleModal2">Subcribe Us</a>
                             </div>
                         </div>
                     </div>

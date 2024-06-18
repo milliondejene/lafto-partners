@@ -51,7 +51,7 @@ function Banner() {
               and PR communications. With a deep understanding of Ethiopia's
               diverse culture, we craft strategies that connect and resonate.
             </p>
-            <a href="index3#">Discover More</a>
+            <a href="">Discover More</a>
           </div>
           <div className="col-lg-5">
             <div className="banner-img">

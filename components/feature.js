@@ -21,7 +21,7 @@ function Feature() {
                   <h3>Comprehensive Communications</h3>
                   <p>We modernize your communications systems to thrive in a connected world, enhancing your organization's visibility and engagement.</p>
                   <div className="over-btn">
-                    <a href="index4#">Read More</a>
+                    <a href="">Read More</a>
                   </div>
                 </div>
               </div>
@@ -32,7 +32,7 @@ function Feature() {
                   <h3>Expert PR Services</h3>
                   <p>Our public relations services include crafting compelling press releases and producing engaging PR videos tailored to your audience.<br/> <br/></p>
                   <div className="over-btn">
-                    <a href="index4#">Read More</a>
+                    <a href="">Read More</a>
                   </div>
                 </div>
               </div>
@@ -43,7 +43,7 @@ function Feature() {
                   <h3>Social Media Management</h3>
                   <p>We provide expert management of your social media presence, ensuring consistent and effective engagement with your audience.</p>
                   <div className="over-btn">
-                    <a href="index4#">Read More</a>
+                    <a href="">Read More</a>
                   </div>
                 </div>
               </div>
@@ -54,7 +54,7 @@ function Feature() {
                   <h3>Creative Storytelling</h3>
                   <p>Our team excels in storytelling across mediums, including writing, video, and animation, to captivate and connect with your audience.</p>
                   <div className="over-btn">
-                    <a href="index4#">Read More</a>
+                    <a href="#">Read More</a>
                   </div>
                 </div>
               </div>
