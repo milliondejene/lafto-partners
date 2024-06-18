@@ -50,6 +50,7 @@ function MyApp({ Component, pageProps }) {
     router.events.on('routeChangeComplete', handleRouteChangeComplete);
 
     // Initial script load and initial preloader delay
+    setLoading(true);
     loadScriptsOnRouteChange();
     const initialLoadTimer = setTimeout(() => setLoading(false), 2000);
 
