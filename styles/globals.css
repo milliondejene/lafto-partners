@@ -347,3 +347,11 @@
     margin-bottom: 0; /* Optional: Remove bottom margin from the span */
   }
 }
+@media (max-width: 768px) {
+  .post-content {
+    width: 80% !important;
+  }
+  .post-meta-container {
+    margin-left: 0 !important;
+  }
+}

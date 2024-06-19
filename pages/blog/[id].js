@@ -194,33 +194,59 @@ const BlogPost = () => {
               )}
             </div>
 
-            <div className="col-lg-12 blog-content">
-              <div className="blog-post">
+            <div className="col-lg-12 blog-content" >
+              <div className="blog-post" style={{ display: "flex", justifyContent: "center" }}>
                 <div
                   className="post-content"
                   dangerouslySetInnerHTML={{ __html: post.content }}
-                  style={{ textAlign: "justify", textJustify: "inter-word" }}
+                  style={{
+                    textAlign: "justify",
+                    textJustify: "inter-word",
+                    width: "60%",
+                  }}
                 />
               </div>
               <p style={postMetaStyles}>
-              <div>
-  <div style={{ display: 'flex', alignItems: 'center' }}>
-    <i style={{ color: '#c18b28', fontSize: '24px', marginRight: '8px' }} className="fa fa-user-circle-o" aria-hidden="true"></i>
-    <span>&mdash; by {post.author.node.name}</span>
-  </div>
-  <div style={{ marginTop: '8px' }}>
-    {formatDate(post.date)}
-  </div>
-</div>
+                <div className="post-meta-container" style={{marginLeft: "230px"}}>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <i
+                      style={{
+                        color: "#c18b28",
+                        fontSize: "24px",
+                        marginRight: "8px",
+                      }}
+                      className="fa fa-user-circle-o"
+                      aria-hidden="true"
+                    ></i>
+                    <span>&mdash; by {post.author.node.name}</span>
+                  </div>
+                  <div style={{ marginTop: "8px" }}>{formatDate(post.date)}</div>
+                </div>
 
-              
                 {category && category.name !== "Uncategorized" && (
                   <span> in {category.name}</span>
                 )}
               </p>
             </div>
-            <h3 className="related-post-title" style={{marginBottom:"10px", marginLeft:"10px", marginTop:"70px"}}>Related Posts</h3>
-            <div className="blog-main" style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", margin: "0 -10px" }}>
+            <h3
+              className="related-post-title"
+              style={{
+                marginBottom: "10px",
+                marginLeft: "10px",
+                marginTop: "70px",
+              }}
+            >
+              Related Posts
+            </h3>
+            <div
+              className="blog-main"
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "space-between",
+                margin: "0 -10px",
+              }}
+            >
               {posts.nodes.map((post) => (
                 <div
                   key={post.id}
@@ -234,12 +260,41 @@ const BlogPost = () => {
                       className="img-fluid w-100"
                       style={{ maxHeight: "200px", objectFit: "cover" }}
                     />
-                    <div className="blog-item-txt" style={{ position: "relative", paddingLeft:"5px",paddingTop:"20px", paddingRight:"5px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                      <h4 style={{ height: "60px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "wrap", margin: "0 0 10px 0" }}>{post.title}</h4>
+                    <div
+                      className="blog-item-txt"
+                      style={{
+                        position: "relative",
+                        paddingLeft: "5px",
+                        paddingTop: "20px",
+                        paddingRight: "5px",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <h4
+                        style={{
+                          height: "60px",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          whiteSpace: "wrap",
+                          margin: "0 0 10px 0",
+                        }}
+                      >
+                        {post.title}
+                      </h4>
                       <p
                         className="excerpt"
                         dangerouslySetInnerHTML={{ __html: post.excerpt }}
-                        style={{ flexGrow: 1, height: "85px", overflow: "hidden", textOverflow: "ellipsis", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical" }}
+                        style={{
+                          flexGrow: 1,
+                          height: "85px",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          display: "-webkit-box",
+                          WebkitLineClamp: 3,
+                          WebkitBoxOrient: "vertical",
+                        }}
                       />
                       <Link href={`/blog/${post.id}`}>Read More</Link>
                     </div>

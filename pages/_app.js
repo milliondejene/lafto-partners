@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps }) {
           document.body.appendChild(script);
         }
       });
-      setTimeout(() => setLoading(false), 2000);
+      setTimeout(() => setLoading(false), 3000);
     };
 
     router.events.on('routeChangeStart', handleRouteChange);

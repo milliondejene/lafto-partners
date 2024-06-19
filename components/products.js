@@ -46,7 +46,7 @@ function Product() {
           </div>
         </div>
         <div className="row">
-        products -----------
+        {/* company-list ----------- */}
         </div>
       </div>
     </section>

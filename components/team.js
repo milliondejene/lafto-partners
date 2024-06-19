@@ -54,7 +54,7 @@ function Team() {
                               style={{
                                 marginRight: "10px",
                                 color: "#c18b28",
-                                fontSize: "22px",
+                                fontSize: "20px",
                               }}
                               className="fa fa-envelope clickable-icon"
                               aria-hidden="true"
@@ -62,7 +62,7 @@ function Team() {
                           </Link>
                           <Link href="/info-page">
                             <i
-                              style={{ color: "#c18b28", fontSize: "24px" }}
+                              style={{ color: "#c18b28", fontSize: "22px" }}
                               className="fa fa-info-circle clickable-icon"
                               aria-hidden="true"
                             ></i>
