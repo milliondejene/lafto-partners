@@ -5,6 +5,8 @@ import { useRouter } from 'next/router';
 import { ThemeProvider } from '../lib/themeContext';
 import Script from 'next/script';
 import Preloader from '../components/Preloader';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import '../styles/globals.css'; 
 
 function MyApp({ Component, pageProps }) {
@@ -13,14 +15,6 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     const loadScripts = [
-      '/js/jquery-3.3.1.min.js',
-      '/js/bootstrap.min.js',
-      '/js/slick.min.js',
-      '/js/line.min.js',
-      '/js/particles.js',
-      '/js/app.js',
-      '/js/circular.js',
-      '/js/custom.js'
     ];
 
     const handleRouteChange = () => {
@@ -53,14 +47,8 @@ function MyApp({ Component, pageProps }) {
     <ApolloProvider client={client}>
       <ThemeProvider>
         {loading && <Preloader />}
-        <Script src="/js/jquery-3.3.1.min.js" strategy="beforeInteractive" />
-        <Script src="/js/bootstrap.min.js" strategy="beforeInteractive" />
-        <Script src="/js/slick.min.js" strategy="beforeInteractive" />
-        <Script src="/js/line.min.js" strategy="lazyOnload" />
         <Script src="/js/particles.js" strategy="lazyOnload" />
         <Script src="/js/app.js" strategy="lazyOnload" />
-        <Script src="/js/circular.js" strategy="lazyOnload" />
-        <Script src="/js/custom.js" strategy="lazyOnload" />
         <Component {...pageProps} />
       </ThemeProvider>
     </ApolloProvider>

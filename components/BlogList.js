@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { useQuery, gql } from "@apollo/client";
 import Link from "next/link";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const GET_BLOG_POSTS = gql`
   query GetBlogPosts {
@@ -22,47 +25,43 @@ const GET_BLOG_POSTS = gql`
 function BlogList() {
   const { loading, error, data } = useQuery(GET_BLOG_POSTS);
 
-  useEffect(() => {
-    if (!loading && !error && data) {
-      $(".blog-main").slick({
-        slidesToShow: 2,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 3000,
-        speed: 2000,
-        arrows: false,
-        centerMode: true,
-        centerPadding: "0px",
-        focusOnSelect: true,
-        responsive: [
-          {
-            breakpoint: 576,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
-            },
-          },
-          {
-            breakpoint: 768,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 1,
-            },
-          },
-          {
-            breakpoint: 992,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 1,
-            },
-          },
-        ],
-      });
-    }
-  }, [loading, error, data]);
-
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
+
+  const settings = {
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    speed: 2000,
+    arrows: false,
+    centerMode: true,
+    centerPadding: "0px",
+    focusOnSelect: true,
+    responsive: [
+      {
+        breakpoint: 576,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
   return (
     <section id="blog">
@@ -74,10 +73,10 @@ function BlogList() {
         </div>
         <div className="row blog-pa">
           <div className="col-lg-8">
-            <div className="blog-main">
+            <Slider {...settings} className="blog-main">
               {data?.posts.nodes.map((post) => (
                 <div key={post.id} className="col-lg-6 blog-item">
-                  <div className="">
+                  <div>
                     <img
                       src={post.featuredImage?.node?.sourceUrl}
                       alt="blog-img"
@@ -93,7 +92,7 @@ function BlogList() {
                   </div>
                 </div>
               ))}
-            </div>
+            </Slider>
           </div>
           <div className="col-lg-4 col-md-10 m-md-auto blog-text">
             <form>

@@ -8,6 +8,9 @@ import Link from "next/link";
 import Image from "next/image";
 import Preloader from "../../components/Preloader";
 import Subscribe from "../../components/subscribe";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const GET_BLOG_POST = gql`
   query GetBlogPost($id: ID!) {
@@ -68,47 +71,6 @@ const BlogPost = () => {
     };
   }, [router]);
 
-  useEffect(() => {
-    if (!loading && !error && data) {
-      if (typeof window !== "undefined" && window.$) {
-        window.$(".blog-main").slick({
-          slidesToShow: 3, // Show 3 slides at a time
-          slidesToScroll: 1,
-          autoplay: true,
-          autoplaySpeed: 3000,
-          speed: 2000,
-          arrows: false,
-          centerMode: true,
-          centerPadding: "0px",
-          focusOnSelect: true,
-          responsive: [
-            {
-              breakpoint: 576,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-              },
-            },
-            {
-              breakpoint: 768,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 1,
-              },
-            },
-            {
-              breakpoint: 992,
-              settings: {
-                slidesToShow: 3, // Show 3 slides at a time for wider screens
-                slidesToScroll: 1,
-              },
-            },
-          ],
-        });
-      }
-    }
-  }, [loading, error, data]);
-
   if (loading) return <Preloader />;
   if (error) return <p>Error: {error.message}</p>;
 
@@ -156,6 +118,31 @@ const BlogPost = () => {
     (cat) => cat.name.toLowerCase() !== "uncategorized"
   );
 
+  const settings = {
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    speed: 2000,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
     <>
       <Header />
@@ -194,8 +181,11 @@ const BlogPost = () => {
               )}
             </div>
 
-            <div className="col-lg-12 blog-content" >
-              <div className="blog-post" style={{ display: "flex", justifyContent: "center" }}>
+            <div className="col-lg-12 blog-content">
+              <div
+                className="blog-post"
+                style={{ display: "flex", justifyContent: "center" }}
+              >
                 <div
                   className="post-content"
                   dangerouslySetInnerHTML={{ __html: post.content }}
@@ -207,7 +197,10 @@ const BlogPost = () => {
                 />
               </div>
               <p style={postMetaStyles}>
-                <div className="post-meta-container" style={{marginLeft: "230px"}}>
+                <div
+                  className="post-meta-container"
+                  style={{ marginLeft: "230px" }}
+                >
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <i
                       style={{
@@ -220,7 +213,9 @@ const BlogPost = () => {
                     ></i>
                     <span>&mdash; by {post.author.node.name}</span>
                   </div>
-                  <div style={{ marginTop: "8px" }}>{formatDate(post.date)}</div>
+                  <div style={{ marginTop: "8px" }}>
+                    {formatDate(post.date)}
+                  </div>
                 </div>
 
                 {category && category.name !== "Uncategorized" && (
@@ -238,22 +233,14 @@ const BlogPost = () => {
             >
               Related Posts
             </h3>
-            <div
-              className="blog-main"
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "space-between",
-                margin: "0 -10px",
-              }}
-            >
+            <Slider {...settings} className="blog-main">
               {posts.nodes.map((post) => (
                 <div
                   key={post.id}
                   className="col-lg-4 col-md-6 col-sm-12 blog-item"
                   style={{ padding: "20px", boxSizing: "border-box" }}
                 >
-                  <div className="">
+                  <div>
                     <img
                       src={post.featuredImage?.node?.sourceUrl}
                       alt="blog-img"
@@ -301,7 +288,7 @@ const BlogPost = () => {
                   </div>
                 </div>
               ))}
-            </div>
+            </Slider>
           </div>
         </div>
       </section>

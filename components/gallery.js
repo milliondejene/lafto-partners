@@ -33,29 +33,29 @@ function Gallery() {
                   layout="responsive"
                 />
               </div>
-              <div className="col-lg-3 col-md-3 col-sm-6 col-12 gallery-img g-mar sm-gallery-top">
+              <div className="col-lg-3 col-md-3 col-sm-3 col-12 gallery-img g-mar sm-gallery-top2">
                 <Image
                   src="/images/g3.jpg"
                   alt="gallery-img"
-                  className="img-fluid"
-                  width={300}
+                  className="img-fluid w-100 sp-img"
+                  width={600}
                   height={400}
                   layout="responsive"
                 />
               </div>
-              <div className="col-lg-3 col-md-3 col-sm-6 col-12 gallery-img g-mar">
+              <div className="col-lg-3 col-md-6 col-sm-6 col-12 gallery-img g-mar sm-gallery-top2">
                 <Image
-                  src="/images/g4.jpg"
+                  src="/images/g5.jpg"
                   alt="gallery-img"
-                  className="img-fluid"
-                  width={300}
-                  height={400}
+                  className="img-fluid w-100 sp-img"
+                  width={1000}
+                  height={800}
                   layout="responsive"
                 />
               </div>
               <div className="col-lg-6 col-md-6 col-sm-6 col-12 gallery-img g-mar sm-gallery-top2">
                 <Image
-                  src="/images/g5.jpg"
+                  src="/images/g4.jpg"
                   alt="gallery-img"
                   className="img-fluid w-100 sp-img"
                   width={600}
