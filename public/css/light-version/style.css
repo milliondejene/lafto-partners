@@ -1816,4 +1816,46 @@ textarea::placeholder {
     background-color: rgba(255, 255, 255, 0.7);
     position: relative;
     z-index: 1;
-}
+}/* light-mode.css */
+.team-card {
+    background-color: rgb(240, 240, 240);
+
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .team-card .team-role {
+    color: #c18b28;
+  }
+  
+  .team-card .clickable-icon {
+    color: #c18b28;
+  }
+  
+  /* Slick slider styles for light mode */
+  .slick-dots li button {
+    background-color: #c18b28;
+  }
+  
+  .slick-prev,
+  .slick-next {
+    color: #c18b28;
+  }
+  /* Light theme */
+.navbar-light {
+    background-color: transparent;
+  }
+  
+  .navbar-light.scrolled {
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .custom-dots li button:before {
+    color: red;  /* Change to your desired color */
+  }
+  
+  .custom-dots li.slick-active button:before {
+    color: blue;  /* Change to your desired color */
+  }
+  

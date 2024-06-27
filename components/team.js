@@ -1,8 +1,7 @@
+
 import Link from "next/link";
 import Image from "next/image";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 const teamMembers = [
   { name: "Jessie Sundberg", role: "Copywriter", img: "/images/p9.jpg" },
@@ -14,26 +13,37 @@ const teamMembers = [
 ];
 
 function Team() {
-  const settings = {
-    slidesToShow: 3,
-    slidesToScroll: 1,
+
+
+  var settings = {
+    dots: true,
+    dotsClass: "slick-dots custom-dots",
+    infinite: true,
     autoplay: true,
-    autoplaySpeed: 3000,
-    speed: 2000,
-    arrows: false,
-    centerMode: true,
-    centerPadding: "0px",
-    focusOnSelect: true,
+    autoplaySpeed: 5000,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    initialSlide: 0,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
         },
       },
       {
-        breakpoint: 768,
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -43,75 +53,52 @@ function Team() {
   };
 
   return (
-    <section id="team">
-      <div className="container">
-        <div className="row header-text text-center team-header">
-          <div className="col-lg-12">
-            <h3>
-              TE<span>A</span>M
-            </h3>
-          </div>
+    <section id="team" className="bg-gray-100 py-12">
+      <div className="container mx-auto">
+        <div className="text-center header-text team-header">
+          <h3 className="text-3xl font-bold" style={{ marginBottom: '80px' }}>
+            TE<span>A</span>M
+          </h3>
         </div>
-        <div className="row">
-          <div className="col-lg-12">
-            <Slider {...settings} className="product-main" style={{ marginTop: "80px" }}>
-              {teamMembers.map((person, index) => (
-                <div key={index} className="col-lg-3">
-                  <div className="product-slider text-center">
-                    <div className="pro-img">
-                      <Image
-                        src={person.img}
-                        alt="product-img"
-                        layout="responsive"
-                        width={190}
-                        height={190}
-                      />
-                    </div>
-                    <div className="border-style" style={{ marginTop: "25px" }}>
-                      <h3>{person.name}</h3>
-                      <Link href="index2#" legacyBehavior>
-                        <a>{person.role}</a>
+        <div className="mx-auto">
+          <Slider {...settings} className="mx-auto">
+            {teamMembers.map((person, index) => (
+              <div key={index} className="w-full md:w-1/2 lg:w-1/3 px-3 mb-8">
+                <div className="team-card overflow-hidden">
+                  <div className="pro-img">
+                    <Image
+                      src={person.img}
+                      alt="product-img"
+                      layout="responsive"
+                      width={190}
+                      height={190}
+                    />
+                  </div>
+                  <div className="border-style mt-4 px-4 pb-4">
+                    <h3 className="text-lg font-semibold" style={{ whiteSpace: 'nowrap' }}>{person.name}</h3>
+                    <Link href="" legacyBehavior>
+                      <a className="block team-role">{person.role}</a>
+                    </Link>
+                  </div>
+                  <div className="pro-info flex justify-between items-center px-4">
+                    <span className="mr-2 mb-3 text-gray-600">Contact</span>
+                    <div className="icon-container flex"  style={{ marginBottom: '20px',}}>
+                      <Link href="" legacyBehavior>
+                        <a className="te mr-2">
+                          <i className="fa fa-envelope clickable-icon text-xl"></i>
+                        </a>
                       </Link>
-                    </div>
-                    <div className="row pro-info">
-                      <div
-                        className="col-lg-6 col-sm-5 col-6"
-                        style={{ marginLeft: "10px" }}
-                      >
-                        <span>Contact</span>
-                      </div>
-                      <div className="" style={{ marginRight: "25px" }}>
-                        <div className="icon-container">
-                          <Link href="mailto:example@example.com" legacyBehavior>
-                            <a>
-                              <i
-                                style={{
-                                  marginRight: "10px",
-                                  color: "#c18b28",
-                                  fontSize: "20px",
-                                }}
-                                className="fa fa-envelope clickable-icon"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </Link>
-                          <Link href="/info-page" legacyBehavior>
-                            <a>
-                              <i
-                                style={{ color: "#c18b28", fontSize: "22px" }}
-                                className="fa fa-info-circle clickable-icon"
-                                aria-hidden="true"
-                              ></i>
-                            </a>
-                          </Link>
-                        </div>
-                      </div>
+                      <Link href="" legacyBehavior>
+                        <a className="te">
+                          <i className="fa fa-info-circle clickable-icon text-2xl"></i>
+                        </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
-              ))}
-            </Slider>
-          </div>
+              </div>
+            ))}
+          </Slider>
         </div>
       </div>
     </section>

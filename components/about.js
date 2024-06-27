@@ -2,12 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 
 function About() {
-
   return (
     <section id="about">
       <div className="container">
         <div className="row header-text text-center about-header">
-          <div className="col-lg-12">
+          <div className="col-lg-12" >
             <h3>
               AB<span>O</span>UT
             </h3>
@@ -33,12 +32,19 @@ function About() {
                   <span className="separet-span">Who We Are</span>
                   <h3>Your Go-To Marketing Agency</h3>
                   <p>
-                    Lafto Partners is a dynamic marketing and consulting agency based in Ethiopia, offering a full spectrum of services from strategic planning to creative execution. Our team specializes in bridging diverse cultural divides, ensuring your message resonates across Ethiopia's rich tapestry of over 90 ethnic groups.
+                    Lafto Partners is a dynamic marketing and consulting agency
+                    based in Ethiopia, offering a full spectrum of services from
+                    strategic planning to creative execution. Our team
+                    specializes in bridging diverse cultural divides, ensuring
+                    your message resonates across Ethiopia's rich tapestry of
+                    over 90 ethnic groups.
                   </p>
                   <p className="separate-p tab-hider">
-                    Founded with a deep understanding of local nuances, we craft tailored strategies that connect with varied audiences, making your brand stand out in a competitive landscape.
+                    Founded with a deep understanding of local nuances, we craft
+                    tailored strategies that connect with varied audiences,
+                    making your brand stand out in a competitive landscape.
                   </p>
-                  <a href="index2#">Learn More</a>
+                  <a href="">Learn More</a>
                 </div>
               </div>
             </div>
@@ -141,12 +147,19 @@ function About() {
                   <span className="separet-span">Our Achievements</span>
                   <h3>Transformative Projects & Impact</h3>
                   <p>
-                    At Lafto Partners, our portfolio boasts collaborations with esteemed clients such as the Oromia Tourism Commission and Alphabet Inc. (Google). Our work spans digital media management, branding, and content production, consistently delivering exceptional results that drive growth and visibility.
+                    At Lafto Partners, our portfolio boasts collaborations with
+                    esteemed clients such as the Oromia Tourism Commission and
+                    Alphabet Inc. (Google). Our work spans digital media
+                    management, branding, and content production, consistently
+                    delivering exceptional results that drive growth and
+                    visibility.
                   </p>
                   <p className="separate-p tab-hider">
-                    We pride ourselves on creating impactful strategies and compelling stories that elevate our clients' brands and resonate with diverse audiences.
+                    We pride ourselves on creating impactful strategies and
+                    compelling stories that elevate our clients' brands and
+                    resonate with diverse audiences.
                   </p>
-                  <a href="index2#">See Our Work</a>
+                  <a href="">See Our Work</a>
                 </div>
               </div>
             </div>

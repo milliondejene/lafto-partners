@@ -8,10 +8,10 @@ function Subscribe() {
           <div className="col-lg-8 m-auto">
             <div className="sub-main">
               <div className="row">
-                <div className="col-lg-8 col-md-7">
+                <div className="col-lg-8 col-md-3">
                   <h3>Stay Connected With Us</h3>
                 </div>
-                <div className="col-lg-3 col-md-5 subscripe-btn">
+                <div className="col-lg-4 col-md-5 subscripe-btn">
                   {/* Use Link component for navigation (optional) */}
                   {/* <Link href="/subscribe"> */}
                   <a href="" data-toggle="modal" data-target="#exampleModal2">Subscribe Us</a>

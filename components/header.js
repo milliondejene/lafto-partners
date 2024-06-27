@@ -24,11 +24,6 @@ function Navbar() {
     }, 2000); // Adjust the timeout as needed
   };
 
-  const handleNavigate = (hash) => {
-    const baseUrl = window.location.origin;
-    window.location.href = `${baseUrl}/${hash}`;
-  };
-
   const handleToggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -46,10 +41,41 @@ function Navbar() {
     };
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 100) {
+        navbar.classList.add('nav-bg');
+      } else {
+        navbar.classList.remove('nav-bg');
+      }
+    };
+  
+    window.addEventListener('scroll', handleScroll);
+  
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+  
+  
+  const handleScrollToElement = (element) => {
+    const targetElement = document.getElementById(element);
+    if (targetElement) {
+      window.scrollTo({
+        top: targetElement.offsetTop,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <>
       {isLoading && <Preloader />}
-      <nav ref={navRef} className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+      <nav
+        ref={navRef}
+        className="navbar navbar-expand-lg navbar-light bg-light sticky-top"
+      >
         <div className="container">
           <a className="navbar-brand" href="/">
             <Image
@@ -72,24 +98,47 @@ function Navbar() {
             <i className="fa fa-bars" aria-hidden="true"></i>
           </button>
           <div
-            className={`collapse navbar-collapse menu-main ${isMenuOpen ? "show" : ""}`}
+            className={`collapse navbar-collapse menu-main ${
+              isMenuOpen ? "show" : ""
+            }`}
             id="navbarSupportedContent"
           >
             <ul className="navbar-nav ml-auto menu-item">
               <li className="nav-item">
-                <a className="nav-link" href="/">Home</a>
+                <a href="/" className="nav-link">
+                  Home
+                </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#about" onClick={() => handleNavigate('#about')}>About Us</a>
+                <a
+                  className="nav-link"
+                  onClick={() => {
+                    handleScrollToElement("about");
+                  }}
+                >
+                  About Us
+                </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#gallery" onClick={() => handleNavigate('#gallery')}>Gallery</a>
+                <a
+                  className="nav-link"
+                  onClick={() => handleScrollToElement("gallery")}
+                >
+                  Gallery
+                </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#product" onClick={() => handleNavigate('#product')}>Products</a>
+                <a
+                  className="nav-link"
+                  onClick={() => handleScrollToElement("product")}
+                >
+                  Products
+                </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#blog" onClick={() => handleNavigate('#blog')}>Blog</a>
+                <a className="nav-link" onClick={() => handleScrollToElement("blog")}>
+                  Blog
+                </a>
               </li>
               <li className="nav-item">
                 <a
@@ -99,7 +148,7 @@ function Navbar() {
                     background: "none",
                     border: "none",
                     cursor: "pointer",
-                    paddingLeft:"15px",
+                    paddingLeft: "15px",
                   }}
                 >
                   <i
@@ -150,7 +199,10 @@ function Navbar() {
                     <div className="input-group contact-input mb-3">
                       <div className="input-group-prepend">
                         <span className="input-group-text faq-icon">
-                          <i className="fa fa-envelope-o" aria-hidden="true"></i>
+                          <i
+                            className="fa fa-envelope-o"
+                            aria-hidden="true"
+                          ></i>
                         </span>
                       </div>
                       <input

@@ -15,6 +15,7 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     const loadScripts = [
+'/js/particles.js',
     ];
 
     const handleRouteChange = () => {

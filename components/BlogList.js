@@ -27,41 +27,43 @@ function BlogList() {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
-
-  const settings = {
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    autoplay: true,
+    autoplaySpeed: 5000,
     slidesToShow: 2,
     slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    speed: 2000,
-    arrows: false,
-    centerMode: true,
-    centerPadding: "0px",
-    focusOnSelect: true,
+    initialSlide: 0,
     responsive: [
       {
-        breakpoint: 576,
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
     ],
   };
+
 
   return (
     <section id="blog">
@@ -75,7 +77,7 @@ function BlogList() {
           <div className="col-lg-8">
             <Slider {...settings} className="blog-main">
               {data?.posts.nodes.map((post) => (
-                <div key={post.id} className="col-lg-6 blog-item">
+                <div key={post.id} className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 px-4 mb-8">
                   <div>
                     <img
                       src={post.featuredImage?.node?.sourceUrl}
