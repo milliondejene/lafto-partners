@@ -15,7 +15,10 @@ const nextConfig = {
       },
     ],
   },
-  // other Next.js config
+  webpack: (config) => {
+    config.cache = false;
+    return config;
+  },
 };
 
 export default bundleAnalyzer(nextConfig);

@@ -82,7 +82,7 @@ body {
   margin-bottom: 10px;
   align-items: center;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   font-size: 2rem;
   font-weight: bold;
   line-height: "1.2";
