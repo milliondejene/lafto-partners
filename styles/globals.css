@@ -16,6 +16,10 @@ body {
   color: var(--text-color);
 }
 
+.main-container{
+  overflow-x: hidden
+}
+
 /* Bootstrap Wrapper */
 .bootstrap-wrapper {
   @import 'bootstrap/dist/css/bootstrap.min.css';
