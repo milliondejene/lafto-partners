@@ -87,7 +87,7 @@ function BlogList() {
                     <div className="blog-item-txt">
                       <h3>{post.title}</h3>
                       <p className="excerpt" dangerouslySetInnerHTML={{ __html: post.excerpt }} />
-                      <Link href={`/blog/${post.id}`}>
+                      <Link href={`/blog/${post.id}`}  style={{ paddingBottom: '20px' }}>
                         Read More
                       </Link>
                     </div>

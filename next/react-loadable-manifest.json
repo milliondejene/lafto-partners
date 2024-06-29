@@ -1,0 +1,66 @@
+{
+  "pages/index.js -> ../components/BlogList": {
+    "id": 4405,
+    "files": [
+      "static/chunks/66-84cd0c2756c47891.js",
+      "static/chunks/757-8ebbe19f906d85d3.js",
+      "static/chunks/366.dbe02181a38e2e93.js"
+    ]
+  },
+  "pages/index.js -> ../components/about": {
+    "id": 9501,
+    "files": [
+      "static/chunks/501.f2b7d3f0b5c593a9.js"
+    ]
+  },
+  "pages/index.js -> ../components/banner": {
+    "id": 6871,
+    "files": [
+      "static/chunks/871.d5fb3a2c9f029f17.js"
+    ]
+  },
+  "pages/index.js -> ../components/contact": {
+    "id": 5202,
+    "files": [
+      "static/chunks/202.1fa1eb325b2402dd.js"
+    ]
+  },
+  "pages/index.js -> ../components/feature": {
+    "id": 6533,
+    "files": [
+      "static/chunks/533.a381ce3c75dd32ce.js"
+    ]
+  },
+  "pages/index.js -> ../components/gallery": {
+    "id": 1087,
+    "files": [
+      "static/chunks/87.d87b361004289e24.js"
+    ]
+  },
+  "pages/index.js -> ../components/products": {
+    "id": 6776,
+    "files": [
+      "static/chunks/776.6116d670bff21597.js"
+    ]
+  },
+  "pages/index.js -> ../components/review": {
+    "id": 4679,
+    "files": [
+      "static/chunks/66-84cd0c2756c47891.js",
+      "static/chunks/679.7c07dbf2a88c632b.js"
+    ]
+  },
+  "pages/index.js -> ../components/subscribe": {
+    "id": 7002,
+    "files": [
+      "static/chunks/2.1c4ef856ea97fd69.js"
+    ]
+  },
+  "pages/index.js -> ../components/team": {
+    "id": 7943,
+    "files": [
+      "static/chunks/66-84cd0c2756c47891.js",
+      "static/chunks/943.a1b24c646dd50126.js"
+    ]
+  }
+}

@@ -40,14 +40,15 @@ function Navbar() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
   useEffect(() => {
     const handleScroll = () => {
       const navbar = document.querySelector('.navbar');
-      if (window.scrollY > 100) {
-        navbar.classList.add('nav-bg');
-      } else {
-        navbar.classList.remove('nav-bg');
+      if (navbar) {
+        if (window.scrollY > 100) {
+          navbar.classList.add('nav-bg');
+        } else {
+          navbar.classList.remove('nav-bg');
+        }
       }
     };
   
@@ -57,7 +58,6 @@ function Navbar() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  
   
   const handleScrollToElement = (element) => {
     const targetElement = document.getElementById(element);

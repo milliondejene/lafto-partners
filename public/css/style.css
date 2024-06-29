@@ -1391,6 +1391,7 @@ over-btn a i {
     -webkit-box-shadow: 0 31px 35px rgba(0, 0, 0, .1);
     box-shadow: 0 31px 35px rgba(0, 0, 0, .1);
     padding: 40px 0 30px;
+    margin-right: 20px;
     border-radius: 3px;
 }
 
