@@ -48,7 +48,7 @@ function Review() {
            REV<span>I</span>EW
           </h3>
         </div>
-        <div className="lg:w-full">
+        <div className="lg:w-full review-slick">
           <Slider {...settings} className="review-main">
             <div className="review-item px-2 lg:px-4">
               <div className="comment">

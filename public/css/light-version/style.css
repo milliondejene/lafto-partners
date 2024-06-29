@@ -1803,7 +1803,7 @@ textarea::placeholder {
 }
 
 
-.blog-title-styles{
+.blog-title-styles {
     width: auto;
     margin-bottom: 10px;
     align-items: center;
@@ -1816,52 +1816,90 @@ textarea::placeholder {
     background-color: rgba(255, 255, 255, 0.7);
     position: relative;
     z-index: 1;
-}/* light-mode.css */
+}
+
+/* light-mode.css */
 .team-card {
     background-color: rgb(240, 240, 240);
 
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s, box-shadow 0.3s;
-  }
-  
-  .team-card .team-role {
+}
+
+.team-card .team-role {
     color: #c18b28;
-  }
-  
-  .team-card .clickable-icon {
+}
+
+.team-card .clickable-icon {
     color: #c18b28;
-  }
-  
-  /* Slick slider styles for light mode */
-  .slick-dots li button {
+}
+
+/* Slick slider styles for light mode */
+.slick-dots li button {
     background-color: #c18b28;
-  }
-  
-  .slick-prev,
-  .slick-next {
+}
+
+.slick-prev,
+.slick-next {
     color: #c18b28;
-  }
-  /* Light theme */
+}
+
+/* Light theme */
 .navbar-light {
     background-color: transparent;
-  }
-  
-  .navbar-light.scrolled {
+}
+
+.navbar-light.scrolled {
     background-color: #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  .custom-dots li button:before {
-    color: red;  /* Change to your desired color */
-  }
-  
-  .custom-dots li.slick-active button:before {
-    color: blue;  /* Change to your desired color */
-  }
-  .team-slick .slick-prev:before{
-    color:black;
-  }
-  .team-slick .slick-next:before{
-    color:black;
-  }
-  
+}
+
+.custom-dots li button:before {
+    color: red;
+    /* Change to your desired color */
+}
+
+.custom-dots li.slick-active button:before {
+    color: blue;
+    /* Change to your desired color */
+}
+
+
+
+/* slick arrows and dot-pagination style override */
+
+/* /team-slick/ */
+
+
+.team-slick .slick-prev:before {
+    color: black;
+}
+
+.team-slick .slick-next:before {
+    color: black;
+}
+
+/* /review-slick/ */
+
+.review-slick .slick-prev:before {
+    color: black;
+}
+
+.review-slick .slick-next:before {
+    color: black;
+}
+
+
+/* /blog-list-slick/ */
+.blog-list-slick .slick-prev:before {
+    color: black;
+}
+
+.blog-list-slick .slick-next:before {
+    color: black;
+}
+
+
+
+

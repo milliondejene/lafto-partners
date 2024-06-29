@@ -1823,6 +1823,7 @@ textarea::placeholder {
     color: #c18b28;
     font-family: pb;
 }
+
 /* dark-mode.css */
 .team-card {
     background-color: #151515;
@@ -1830,22 +1831,48 @@ textarea::placeholder {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s, box-shadow 0.3s;
-  }
-  
-  .team-card .team-role {
+}
+
+.team-card .team-role {
     color: #c18b28;
-  }
-  
-  .team-card .clickable-icon {
+}
+
+.team-card .clickable-icon {
     color: #c18b28;
-  }
-  /* Dark theme */
+}
+
+/* Dark theme */
 .navbar-dark {
     background-color: transparent;
-  }
-  
-  .navbar-dark.scrolled {
+}
+
+.navbar-dark.scrolled {
     background-color: #121212;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  }
- 
+}
+
+.team-slick .slick-dots li button:before {
+    color: white;
+}
+
+.team-slick .slick-dots li button:before {
+    color: white;
+}
+
+.review-slick .slick-dots li button:before {
+    color: white;
+}
+
+.review-slick .slick-dots li button:before {
+    color: white;
+}
+
+
+/* /blog-id-slick/ */
+.blog-parent-container .slick-dots li button:before {
+    color: white;
+}
+
+.blog-parent-container .slick-dots li button:before {
+    color: white;
+}

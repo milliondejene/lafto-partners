@@ -74,7 +74,7 @@ function BlogList() {
           </div>
         </div>
         <div className="row blog-pa">
-          <div className="col-lg-8">
+          <div className="col-lg-8 blog-list-slick">
             <Slider {...settings} className="blog-main">
               {data?.posts.nodes.map((post) => (
                 <div key={post.id} className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 px-4 mb-8">
