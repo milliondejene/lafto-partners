@@ -1803,7 +1803,7 @@ textarea::placeholder {
 }
 
 
-.blogTitleStyles{
+.blog-title-styles{
     width: auto;
     margin-bottom: 10px;
     align-items: center;
@@ -1858,4 +1858,12 @@ textarea::placeholder {
   .custom-dots li.slick-active button:before {
     color: blue;  /* Change to your desired color */
   }
-  
+  .slick-prev:before{
+    color:black;
+  }
+  .slick-next:before{
+    color:black;
+  }
+  .slick-arrow{
+   display: none; 
+  }

@@ -45,9 +45,9 @@ function Navbar() {
     const handleScroll = () => {
       const navbar = document.querySelector('.navbar');
       if (window.scrollY > 100) {
-        navbar.classList.add('nav-bg');
+        navbar?.classList?.add('nav-bg');
       } else {
-        navbar.classList.remove('nav-bg');
+        navbar?.classList?.remove('nav-bg');
       }
     };
   
