@@ -1859,20 +1859,31 @@ textarea::placeholder {
     color: white;
 }
 
+.team-slick .slick-dots .slick-active  button:before {
+    color: white;
+}
+
 .review-slick .slick-dots li button:before {
     color: white;
 }
 
 .review-slick .slick-dots li button:before {
+    color: white;
+}
+.review-slick .slick-dots .slick-active  button:before {
     color: white;
 }
 
 
 /* /blog-id-slick/ */
-.blog-parent-container .slick-dots li button:before {
+.blog-list-slick .slick-dots li button:before {
     color: white;
 }
 
-.blog-parent-container .slick-dots li button:before {
+.blog-list-slick .slick-dots li button:before {
     color: white;
 }
+.blog-list-slick .slick-dots .slick-active  button:before {
+    color: white;
+}
+
