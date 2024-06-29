@@ -1858,12 +1858,10 @@ textarea::placeholder {
   .custom-dots li.slick-active button:before {
     color: blue;  /* Change to your desired color */
   }
-  .slick-prev:before{
+  .team-slick .slick-prev:before{
     color:black;
   }
-  .slick-next:before{
+  .team-slick .slick-next:before{
     color:black;
   }
-  .slick-arrow{
-   display: none; 
-  }
+  

@@ -427,3 +427,6 @@ body {
     margin-left: 0 !important;
   }
 }
+.navbar-nav li:hover{
+  cursor: pointer;
+}

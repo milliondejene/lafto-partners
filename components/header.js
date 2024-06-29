@@ -106,7 +106,7 @@ function Navbar() {
             <ul className="navbar-nav ml-auto menu-item">
               <li className="nav-item">
                 <a href="/" className="nav-link">
-                  Home
+                  asd
                 </a>
               </li>
               <li className="nav-item">
