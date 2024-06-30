@@ -1,6 +1,8 @@
+import Slider from "react-slick";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useQuery, gql } from "@apollo/client";
-import { useEffect } from "react";
+//
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import CopyRight from "../../components/copyright";
@@ -8,9 +10,11 @@ import Link from "next/link";
 import Image from "next/image";
 import Preloader from "../../components/Preloader";
 import Subscribe from "../../components/subscribe";
-import Slider from "react-slick";
+//
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+// helpers
+import { formatDate } from "../../lib/utils";
 
 const GET_BLOG_POST = gql`
   query GetBlogPost($id: ID!) {
@@ -74,15 +78,15 @@ const BlogPost = () => {
   if (loading) return <Preloader />;
   if (error) return <p>Error: {error.message}</p>;
 
-  const { post, posts } = data;
+  const { post } = data;
 
-  const blogHeadingStyles = {
-    fontSize: "2.5rem",
-    lineHeight: "1.2",
-    padding: "20px",
-  };
+  // const blogHeadingStyles = {
+  //   fontSize: "2.5rem",
+  //   lineHeight: "1.2",
+  //   padding: "20px",
+  // };
 
-  // const blogTitleStyles = {
+  // const blog-title-styles = {
   //   width: "auto",
   //   marginBottom: "10px",
   //   alignItems: "center",
@@ -105,14 +109,6 @@ const BlogPost = () => {
   //   justifyContent: "start",
   //   alignItems: "left",
   // };
-
-  const formatDate = (dateString) => {
-    const options = { year: "numeric", month: "long", day: "numeric" };
-    const date = new Date(dateString);
-    const formattedDate = date.toLocaleDateString("en-US", options);
-    const formattedTime = date.toUTCString().match(/\d{2}:\d{2}/)[0];
-    return `${formattedDate} at ${formattedTime} GMT`;
-  };
 
   const category = post.categories.nodes.find(
     (cat) => cat.name.toLowerCase() !== "uncategorized"
@@ -155,34 +151,22 @@ const BlogPost = () => {
     ],
   };
 
-
   return (
     <>
       <Header />
       <section id="blog">
-        <div className="container">
-          <div className="row header-text text-center blog-header">
-            <div className="col-lg-12">
-              {/* <h3 style={blogHeadingStyles}>
-                BL<span>O</span>G
-              </h3> */}
-            </div>
-          </div>
-          <div
-            className="row blog-pa blog-parent-container"
-            style={{
-              margin: "auto",
-              height: "auto",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
+        <div
+          className="container"
+          style={{
+            width: "100vw",
+            display:'flex',
+            justifyContent:'center'
+          }}
+        >
+          <div className="row blog-pa blog-parent-container">
             <div className="blog-header-image-container">
               {post.featuredImage?.node?.sourceUrl && (
-                <div
-                  className="blog-top-section"
-                  style={{ height: "auto" }}
-                >
+                <div className="blog-top-section" style={{ height: "auto" }}>
                   <Image
                     src={post.featuredImage.node.sourceUrl}
                     alt="Featured Image"
@@ -194,49 +178,48 @@ const BlogPost = () => {
                 </div>
               )}
             </div>
-            <h1 className="blogTitleStyles">{post.title}</h1>
-            <a style={{ display:'flex',justifyContent:'start',alignItems:"center",padding:'20px'}}>
-                <div
-                  className="post-meta-container"
-                
-                >
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    <i
-                      style={{
-                        color: "#c18b28",
-                        fontSize: "24px",
-                        marginRight: "8px",
-                      }}
-                      className="fa fa-user-circle-o"
-                      aria-hidden="true"
-                    ></i>
-                    <span>&mdash; by {post.author.node.name}</span>
-                  </div>
-                  <div style={{ marginTop: "8px" }}>
-                    {formatDate(post.date)}
-                  </div>
+            <h1 className="blog-title-styles">{post.title}</h1>
+            <a
+              style={{
+                display: "flex",
+                justifyContent: "start",
+                alignItems: "center",
+                padding: "20px",
+              }}
+            >
+              <div className="post-meta-container">
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <i
+                    style={{
+                      color: "#c18b28",
+                      fontSize: "24px",
+                      marginRight: "8px",
+                    }}
+                    className="fa fa-user-circle-o"
+                    aria-hidden="true"
+                  ></i>
+                  <span>&mdash; by {post.author.node.name}</span>
                 </div>
-
-                {category && category.name !== "Uncategorized" && (
-                  <span> in {category.name}</span>
-                )}
-              </a>
-            <div className="blog-content">
-              <div
-                className="blog-post"
-                style={{ display: "flex", justifyContent: "start",padding:"20px" }}
-              >
-                <div
-                  dangerouslySetInnerHTML={{ __html: post.content }}
-                  style={{
-                    textAlign: "justify",
-                    textJustify: "inter-word",
-                  
-                  }}
-                />
+                <div style={{ marginTop: "8px" }}>{formatDate(post.date)}</div>
               </div>
-           
+
+              {category && category.name !== "Uncategorized" && (
+                <span> in {category.name}</span>
+              )}
+            </a>
+
+            <div
+              className="blog-post"
+              style={{
+                width: "100%",
+              }}
+            >
+              <div
+                className="main-post-content-container"
+                dangerouslySetInnerHTML={{ __html: post.content }}
+              />
             </div>
+
             <h3
               className="related-post-title"
               style={{
@@ -249,14 +232,17 @@ const BlogPost = () => {
             </h3>
             <Slider {...settings} className="blog-main">
               {data?.posts.nodes.map((post) => (
-                <div key={post.id} className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 px-4 mb-8">
+                <div
+                  key={post.id}
+                  className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 px-4 mb-8"
+                >
                   <div>
-                    <img
+                    {/* <img
                       src={post.featuredImage?.node?.sourceUrl}
                       alt="blog-img"
                       className="img-fluid w-100"
                       style={{ maxHeight: "200px", objectFit: "cover" }}
-                    />
+                    /> */}
                     <div
                       className="blog-item-txt"
                       style={{

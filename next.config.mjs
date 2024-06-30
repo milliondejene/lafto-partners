@@ -1,5 +1,7 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
+import withBundleAnalyzer from "@next/bundle-analyzer";
+
+const bundleAnalyzer = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
 });
 
 const nextConfig = {
@@ -13,7 +15,10 @@ const nextConfig = {
       },
     ],
   },
-  // other Next.js config
+  webpack: (config) => {
+    config.cache = false;
+    return config;
+  },
 };
 
-module.exports = withBundleAnalyzer(nextConfig);
+export default bundleAnalyzer(nextConfig);

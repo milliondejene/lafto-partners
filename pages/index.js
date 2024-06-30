@@ -25,7 +25,7 @@ const Home = () => {
   if (!mounted) return null;
 
   return (
-    <>
+    <div className="main-container">
       <Header />
       <Banner />
       <Feature />
@@ -41,7 +41,7 @@ const Home = () => {
         <Footer />
         <CopyRight />
       </footer>
-    </>
+    </div>
   );
 };
 
