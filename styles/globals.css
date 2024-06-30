@@ -449,3 +449,13 @@ body {
 .navbar-nav li:hover {
   cursor: pointer;
 }
+
+.slick-list {
+  padding-bottom: 38px;
+  padding-top: none;
+}
+.blog-list .slick-list{
+  height:auto;
+  padding: 2px;
+  /* margin-bottom: 20px; */
+}

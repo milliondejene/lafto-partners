@@ -64,71 +64,89 @@ function BlogList() {
     ],
   };
 
-
   return (
-    <section id="blog">
-      <div className="container">
-        <div className="row header-text text-center blog-header">
-          <div className="col-lg-12">
-            <h3>BL<span>O</span>G</h3>
-          </div>
+    // <section id="blog">
+    <div
+      id="blog"
+      style={{
+        height: "90%",
+      }}
+      className="container"
+    >
+      <div className="row header-text text-center blog-header">
+        <div className="col-lg-12">
+          <h3>
+            BL<span>O</span>G
+          </h3>
         </div>
-        <div className="row blog-pa">
-          <div className="col-lg-8 blog-list-slick">
-            <Slider {...settings} className="blog-main">
-              {data?.posts.nodes.map((post) => (
-                <div key={post.id} className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 px-4 mb-8">
-                  <div>
-                    <img
-                      src={post.featuredImage?.node?.sourceUrl}
-                      alt="blog-img"
-                      className="img-fluid w-100"
-                    />
-                    <div className="blog-item-txt">
-                      <h3>{post.title}</h3>
-                      <p className="excerpt" dangerouslySetInnerHTML={{ __html: post.excerpt }} />
-                      <Link href={`/blog/${post.id}`}>
-                        Read More
-                      </Link>
-                    </div>
-                  </div>
+      </div>
+      <div
+        style={{ display: "flex", flexDirection: "row" }}
+        className="row blog-pa blog-list"
+      >
+        <div className="col-lg-8 blog-list-slick h-auto">
+          <Slider {...settings} className="blog-main">
+            {data?.posts.nodes.map((post) => (
+              <div
+                key={post.id}
+                className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 px-4 mb-8"
+                style={{ height: "100%" }}
+              >
+                {/* header-image */}
+                <div style={{ height: "200px" }}>
+                  <img
+                    src={post.featuredImage?.node?.sourceUrl}
+                    alt="blog-img"
+                    className="img-fluid w-100"
+                    style={{ height: "100%" }}
+                  />
                 </div>
-              ))}
-            </Slider>
-          </div>
-          <div className="col-lg-4 col-md-10 m-md-auto blog-text">
-            <form>
-              <div className="input-group contact-input mb-3">
-                <input
-                  type="text"
-                  className="form-control box-bg"
-                  placeholder="Search here..."
-                  aria-label="Search"
-                />
-                <button type="submit" className="search-btn">
-                  <i className="fa fa-search" aria-hidden="true"></i>
-                </button>
+                {/* body */}
+                <div tyle={{ height: "50%" }} className="blog-item-txt">
+                  <h3>{post.title}</h3>
+                  <p
+                    className="excerpt"
+                    dangerouslySetInnerHTML={{ __html: post.excerpt }}
+                  />
+                  <Link href={`/blog/${post.id}`}>Read More</Link>
+                </div>
               </div>
-            </form>
-            <div className="tags">
-              <h4>Hash Tags</h4>
-              <a href="#">Marketing</a>
-              <a href="#">Branding</a>
-              <a href="#">Success</a>
-              <div className="tag-pa">
-                <a href="#">Strategy</a>
-                <a href="#">Digital</a>
-                <a href="#">Growth</a>
-              </div>
-              <div className="tag-pa">
-                <a href="#">Creative</a>
-                <a href="#">Innovation</a>
-              </div>
+            ))}
+          </Slider>
+        </div>
+        <div className="col-lg-4 col-md-10 m-md-auto blog-text">
+          <form>
+            <div className="input-group contact-input mb-3">
+              <input
+                type="text"
+                className="form-control box-bg"
+                placeholder="Search here..."
+                aria-label="Search"
+              />
+              <button type="submit" className="search-btn">
+                <i className="fa fa-search" aria-hidden="true"></i>
+              </button>
+            </div>
+          </form>
+          <div className="tags">
+            <h4>Hash Tags</h4>
+            <a href="#">Marketing</a>
+            <a href="#">Branding</a>
+            <a href="#">Success</a>
+            <div className="tag-pa">
+              <a href="#">Strategy</a>
+              <a href="#">Digital</a>
+              <a href="#">Growth</a>
+            </div>
+            <div className="tag-pa">
+              <a href="#">Creative</a>
+              <a href="#">Innovation</a>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+    // </section>
   );
 }
 
