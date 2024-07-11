@@ -23,7 +23,7 @@ function Pricing() {
                     <p><i class="fa fa-check-circle-o" aria-hidden="true"></i> Monthly Reports</p>
                     <p><i class="fa fa-check-circle-o" aria-hidden="true"></i> Basic Branding</p>
                     <div class="price-btn text-center">
-                        <a href="index2#">Get Started</a>
+                        <a href="#">Get Started</a>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@ function Pricing() {
                     <p><i class="fa fa-check-circle-o" aria-hidden="true"></i> Advanced Branding</p>
                     <p><i class="fa fa-check-circle-o" aria-hidden="true"></i> PR Services</p>
                     <div class="price-btn text-center">
-                        <a href="index2#">Get Started</a>
+                        <a href="#">Get Started</a>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@ function Pricing() {
                     <p><i class="fa fa-check-circle-o" aria-hidden="true"></i> Full PR Services</p>
                     <p><i class="fa fa-check-circle-o" aria-hidden="true"></i> Event Management</p>
                     <div class="price-btn gold-bg2 text-center">
-                        <a href="index2#">Get Started</a>
+                        <a href="#">Get Started</a>
                     </div>
                 </div>
             </div>
@@ -67,7 +67,7 @@ function Pricing() {
                     <p><i class="fa fa-check-circle-o" aria-hidden="true"></i> 24/7 Support</p>
                     <p><i class="fa fa-check-circle-o" aria-hidden="true"></i> Comprehensive PR and Event Services</p>
                     <div class="price-btn text-center">
-                        <a href="index2#">Get Started</a>
+                        <a href="#">Get Started</a>
                     </div>
                 </div>
             </div>

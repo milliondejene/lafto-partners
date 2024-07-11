@@ -30,7 +30,7 @@ function Product() {
                   <Link href="">Explore More</Link>
                 </div>
                 <div className="col-lg-4 col-md-4 mob-img-hide">
-                  <img src="/images/pro1.png" alt="product-img"/>
+                  <img src="https://milliondejene.github.io/lafto-partners/public/images/pro1.png" alt="product-img"/>
                 </div>
               </div>
             </div>

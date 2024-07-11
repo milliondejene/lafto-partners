@@ -459,3 +459,15 @@ body {
   padding: 2px;
   /* margin-bottom: 20px; */
 }
+
+.image-container {
+  position: relative;
+  width: 100%;
+ /* Maintains aspect ratio (1:1) for square images */
+  filter: blur(10px); /* Initial blur effect */
+  transition: filter 0.3s ease-out;
+}
+
+.image-loaded {
+  filter: blur(0); /* Remove blur effect after image is loaded */
+}

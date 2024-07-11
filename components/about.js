@@ -118,7 +118,7 @@ function About() {
               <div className="col-lg-4 text-center mob-hide sm-hide col-md-5">
                 <div className="about-img ai-two">
                   <img
-                    src="/images/about2.JPG"
+                    src="https://milliondejene.github.io/lafto-partners/public/images/about2.JPG"
                     alt="about-img"
                     className="img-fluid"
                     width={300}

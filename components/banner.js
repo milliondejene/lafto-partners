@@ -58,7 +58,7 @@ function Banner() {
             <div className="banner-img">
               {/* Replace img tag with Next.js Image component */}
               <Image
-                src="/images/banner.png"
+                src="https://milliondejene.github.io/lafto-partners/public/images/banner.png"
                 alt="banner-img"
                 width={900}
                 height={900}
