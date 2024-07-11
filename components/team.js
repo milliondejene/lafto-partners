@@ -3,12 +3,21 @@ import Image from "next/image";
 import Slider from "react-slick";
 
 const teamMembers = [
-  { name: "Jessie Sundberg", role: "Copywriter", img: "/images/p9.jpg" },
-  { name: "Cherinet Kifle", role: "Project Manager", img: "/images/p6.jpg" },
-  { name: "Ariel Germond", role: "Social Media", img: "/images/p11.jpg" },
-  { name: "Argene", role: "Senior Designer", img: "/images/p8.jpg" },
-  { name: "Janna Sundberg", role: "Chief Editor", img: "/images/p7.jpg" },
-  { name: "Ephream Sileshi", role: "Account Manager", img: "/images/p2.jpg" },
+  { name: "Esmael Gebi ", role: "Partner", img: "/images/p18.jpg" },
+  { name: "Ashenafi Yemane ", role: "Photographer", img: "/images/p17.jpg" },
+  { name: "Abenezer Yonas ", role: "Photographer", img: "/images/p16.jpg" },
+  { name: "Leul Mekonnen", role: "Illustrator", img: "/images/p15.jpg" },
+  { name: "Million Dejene", role: "Head of Technology", img: "/images/p14.jpg" },
+  { name: "Letu Mekonnen", role: "Writer (Afaan Oromoo)", img: "/images/p13.jpg" },
+  { name: "Natalia Ebrahim ", role: "Illustrator", img: "/images/p12.jpg" },
+  { name: "Kai Heron", role: "Illustrator", img: "/images/p19.jpg" },
+  { name: "Ribka Abubeker", role: "Finance Officer", img: "/images/p10.jpg" },
+  { name: "Jessie Sundberg", role: "Content Manager/Writer", img: "/images/p9.jpg" },
+  { name: "Cherinet Kifle", role: "Chief Operations Officer", img: "/images/p6.jpg" },
+  { name: "Ariel Germond", role: "Partner", img: "/images/p11.jpg" },
+  { name: "Argene", role: "Chief Design Officer", img: "/images/p8.jpg" },
+  { name: "Janna Sundberg", role: "Chief Content Officer", img: "/images/p7.jpg" },
+  { name: "Ephream Sileshi", role: "Chief Executive Officer", img: "/images/p2.jpg" },
 ];
 
 function Team() {

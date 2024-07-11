@@ -11,13 +11,7 @@ export default function Blog() {
 
   return (
     <>
-      <Header />
-      <BlogList />
-      <Subscribe />
-      <footer>
-        <Footer />
-        <CopyRight />
-      </footer>
+
     </>
   );
 }
