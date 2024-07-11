@@ -28,8 +28,8 @@ function Team() {
     autoplay: true,
     autoplaySpeed: 5000,
     slidesToShow: 4,
-    slidesToScroll: 1,
-    initialSlide: 0,
+    slidesToScroll: 3,
+    initialSlide: 15,
     responsive: [
       {
         breakpoint: 1024,
@@ -74,7 +74,7 @@ function Team() {
                   <div className="pro-img">
                     <Image
                       src={person.img}
-                      alt="product-img"
+                      alt="team-img"
                       layout="responsive"
                       width={190}
                       height={190}
