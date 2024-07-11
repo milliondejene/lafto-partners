@@ -5,6 +5,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="/css/font-awesome.min.css" />
         <link rel="stylesheet" href="/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/css/style.css" id="main-css" />

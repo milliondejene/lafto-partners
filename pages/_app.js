@@ -47,6 +47,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ApolloProvider client={client}>
       <ThemeProvider>
+      <link rel="icon" href="/favicon.ico" />
         {loading && <Preloader />}
         <Script src="/js/particles.js" strategy="lazyOnload" />
         <Script src="/js/app.js" strategy="lazyOnload" />

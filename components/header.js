@@ -40,6 +40,7 @@ function Navbar() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+  
   useEffect(() => {
     const handleScroll = () => {
       const navbar = document.querySelector('.navbar');
@@ -56,7 +57,7 @@ function Navbar() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  
+
   const handleScrollToElement = (element) => {
     const targetElement = document.getElementById(element);
     if (targetElement) {
@@ -64,6 +65,7 @@ function Navbar() {
         top: targetElement.offsetTop,
         behavior: "smooth",
       });
+      setIsMenuOpen(false); // Close the menu after navigation
     }
   };
 
@@ -103,16 +105,14 @@ function Navbar() {
           >
             <ul className="navbar-nav ml-auto menu-item">
               <li className="nav-item">
-                <a href="/" className="nav-link">
+                <a href="/" className="nav-link" onClick={() => setIsMenuOpen(false)}>
                   Home
                 </a>
               </li>
               <li className="nav-item">
                 <a
                   className="nav-link"
-                  onClick={() => {
-                    handleScrollToElement("about");
-                  }}
+                  onClick={() => handleScrollToElement("about")}
                 >
                   About Us
                 </a>
