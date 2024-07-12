@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 function Product() {
   const [mounted, setMounted] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -30,7 +31,15 @@ function Product() {
                   <Link href="">Explore More</Link>
                 </div>
                 <div className="col-lg-4 col-md-4 mob-img-hide">
-                  <img src="https://milliondejene.github.io/lafto-partners/public/images/pro1.png" alt="product-img"/>
+                  <div className={`image-container ${imageLoaded ? 'image-loaded' : 'image-loading'}`}>
+                    <Image
+                      src="https://milliondejene.github.io/lafto-partners/public/images/pro1.png"
+                      alt="product-img"
+                      width={350}
+                      height={500}
+                      onLoad={() => setImageLoaded(true)}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -46,7 +55,7 @@ function Product() {
           </div>
         </div>
         <div className="row">
-        {/* company-list ----------- */}
+          {/* company-list */}
         </div>
       </div>
     </section>

@@ -5,22 +5,23 @@ import { useRouter } from 'next/router';
 import { ThemeProvider } from '../lib/themeContext';
 import Script from 'next/script';
 import Preloader from '../components/Preloader';
+import { Bitter } from '@next/font/google';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import '../styles/globals.css'; 
+import '../styles/globals.css';
+
+const bitter = Bitter({ subsets: ['latin'] });
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadScripts = [
-'/js/particles.js',
-    ];
+    const loadScripts = ['/js/particles.js'];
 
     const handleRouteChange = () => {
       setLoading(true);
-      loadScripts.forEach(src => {
+      loadScripts.forEach((src) => {
         const scriptId = src.split('/').pop();
         if (!document.getElementById(scriptId)) {
           const script = document.createElement('script');
@@ -47,11 +48,13 @@ function MyApp({ Component, pageProps }) {
   return (
     <ApolloProvider client={client}>
       <ThemeProvider>
-      <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
         {loading && <Preloader />}
         <Script src="/js/particles.js" strategy="lazyOnload" />
         <Script src="/js/app.js" strategy="lazyOnload" />
-        <Component {...pageProps} />
+        <main className={bitter.className}>
+          <Component {...pageProps} />
+        </main>
       </ThemeProvider>
     </ApolloProvider>
   );

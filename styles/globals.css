@@ -2,6 +2,7 @@
 :root {
   --bg-color: #fdfdfd;
   --text-color: #121212;
+  --font-family: 'Bitter', serif;
   /* Add more as needed */
 }
 
@@ -9,11 +10,13 @@
 body.dark {
   --bg-color: #121212;
   --text-color: #ffffff;
+  --font-family: 'Bitter', serif;
 }
 
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
+  font-family: var(--font-family);
 }
 
 .main-container {
@@ -84,7 +87,6 @@ body {
 /* new */
 .blog-title-styles {
   width: auto;
-  margin-bottom: 10px;
   align-items: center;
   display: flex;
   justify-content: flex-start;

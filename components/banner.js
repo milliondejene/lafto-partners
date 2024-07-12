@@ -1,8 +1,11 @@
-"use client"
+"use client";
 import { ArrowUpIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
+import { useState } from "react";
 
 function Banner() {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   const handleBackToTop = () => {
     window.scrollTo({
       top: 0,
@@ -57,13 +60,16 @@ function Banner() {
           <div className="col-lg-5">
             <div className="banner-img">
               {/* Replace img tag with Next.js Image component */}
-              <Image
-                src="https://milliondejene.github.io/lafto-partners/public/images/banner.png"
-                alt="banner-img"
-                width={900}
-                height={900}
-                className="img-fluid"
-              />
+              <div className={`image-container ${imageLoaded ? 'image-loaded' : 'image-loading'}`}>
+                <Image
+                  src="https://milliondejene.github.io/lafto-partners/public/images/banner.png"
+                  alt="banner-img"
+                  width={900}
+                  height={900}
+                  className="img-fluid"
+                  onLoad={() => setImageLoaded(true)}
+                />
+              </div>
             </div>
           </div>
         </div>

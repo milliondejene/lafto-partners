@@ -90,17 +90,17 @@ p {
 }
 
 @font-face {
-    src: url(../fonts/Poppins-Bold.ttf);
+    src: url(../fonts/static/Bitter-Bold.ttf);
     font-family: pb;
 }
 
 @font-face {
-    src: url(../fonts/Poppins-Regular.ttf);
+    src: url(../fonts/static/Bitter-Regular.ttf);
     font-family: pr;
 }
 
 @font-face {
-    src: url(../fonts/Poppins-Light.ttf);
+    src: url(../fonts/static/Bitter-Light.ttf);
     font-family: pl;
 }
 

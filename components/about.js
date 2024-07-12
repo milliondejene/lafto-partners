@@ -1,12 +1,17 @@
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 
 function About() {
+  const [imageLoaded1, setImageLoaded1] = useState(false);
+  const [imageLoaded2, setImageLoaded2] = useState(false);
+  const [imageLoaded3, setImageLoaded3] = useState(false);
+
   return (
     <section id="about">
       <div className="container">
         <div className="row header-text text-center about-header">
-          <div className="col-lg-12" >
+          <div className="col-lg-12">
             <h3>
               AB<span>O</span>UT
             </h3>
@@ -17,13 +22,16 @@ function About() {
             <div className="row">
               <div className="col-lg-4 col-sm-8 m-sm-auto col-md-5 text-center">
                 <div className="about-img ai-one">
-                  <Image
-                    src="/images/about1.JPG"
-                    alt="about-img"
-                    className="img-fluid"
-                    width={300}
-                    height={300}
-                  />
+                  <div className={`image-container ${imageLoaded1 ? 'image-loaded' : 'image-loading'}`}>
+                    <Image
+                      src="https://milliondejene.github.io/lafto-partners/public/images/about1.JPG"
+                      alt="about-img"
+                      className="img-fluid"
+                      width={300}
+                      height={300}
+                      onLoad={() => setImageLoaded1(true)}
+                    />
+                  </div>
                 </div>
               </div>
               <div className="col-lg-1 col-md-1"></div>
@@ -116,13 +124,14 @@ function About() {
               </div>
               <div className="col-lg-1 col-md-1"></div>
               <div className="col-lg-4 text-center mob-hide sm-hide col-md-5">
-                <div className="about-img ai-two">
-                  <img
+                <div className={`image-container ${imageLoaded2 ? 'image-loaded' : 'image-loading'}`}>
+                  <Image
                     src="https://milliondejene.github.io/lafto-partners/public/images/about2.JPG"
                     alt="about-img"
                     className="img-fluid"
                     width={300}
                     height={300}
+                    onLoad={() => setImageLoaded2(true)}
                   />
                 </div>
               </div>
@@ -131,13 +140,14 @@ function About() {
           <div className="col-lg-10 m-auto about-item col-md-12">
             <div className="row">
               <div className="col-lg-4 col-sm-8 m-sm-auto text-center col-md-5">
-                <div className="about-img ai-three">
+                <div className={`image-container ${imageLoaded3 ? 'image-loaded' : 'image-loading'}`}>
                   <Image
-                    src="/images/about3.JPG"
+                    src="https://milliondejene.github.io/lafto-partners/public/images/about3.JPG"
                     alt="about-img"
                     className="img-fluid"
                     width={300}
                     height={300}
+                    onLoad={() => setImageLoaded3(true)}
                   />
                 </div>
               </div>
