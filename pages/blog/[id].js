@@ -109,10 +109,8 @@ const BlogPost = () => {
   //   justifyContent: "start",
   //   alignItems: "left",
   // };
-
-  const category = post.categories.nodes.find(
-    (cat) => cat.name.toLowerCase() !== "uncategorized"
-  );
+  const category = post.category;
+  const formattedDate = formatDate(post.date);
 
   var settings = {
     dots: true,
@@ -160,7 +158,8 @@ const BlogPost = () => {
           style={{
             width: "100vw",
             display:'flex',
-            justifyContent:'center'
+            justifyContent:'center',
+            marginTop:"40px"
           }}
         >
           <div className="row blog-pa blog-parent-container">
@@ -178,47 +177,43 @@ const BlogPost = () => {
                 </div>
               )}
             </div>
-            <h1 className="blog-title-styles">{post.title}</h1>
+            <h1 className="blog-title-styles" style={{marginTop:"20px"}}>{post.title}</h1>
             <a
-              style={{
-                display: "flex",
-                justifyContent: "start",
-                alignItems: "center",
-                padding: "20px",
-              }}
-            >
-              <div className="post-meta-container">
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <i
-                    style={{
-                      color: "#c18b28",
-                      fontSize: "24px",
-                      marginRight: "8px",
-                    }}
-                    className="fa fa-user-circle-o"
-                    aria-hidden="true"
-                  ></i>
-                  <span>&mdash; by {post.author.node.name}</span>
-                </div>
-                <div style={{ marginTop: "8px" }}>{formatDate(post.date)}</div>
-              </div>
+        style={{
+          marginLeft: "20px",
+          marginBottom:"20px",
+          justifyContent: "start",
+          alignItems: "center",
+          textDecoration: "none",
+          color: "inherit"
+        }}
+      >
+        <span>
+          {formattedDate} &mdash; by {post.author.node.name}
+          {category && category.name !== "Uncategorized" && (
+            <span> in {category.name}</span>
+          )}
+        </span>
+      </a>
 
-              {category && category.name !== "Uncategorized" && (
-                <span> in {category.name}</span>
-              )}
-            </a>
+      <div
+        className="blog-post"
+        style={{
+          width: "100%",
+          margin: "20px 0",
+        }}
+      >
 
-            <div
-              className="blog-post"
-              style={{
-                width: "100%",
-              }}
-            >
-              <div
-                className="main-post-content-container"
-                dangerouslySetInnerHTML={{ __html: post.content }}
-              />
-            </div>
+        <div
+          className="main-post-content-container"
+          style={{
+            padding: "20px",
+            marginBottom:"20px",
+            marginTop:"20px",
+          }}
+          dangerouslySetInnerHTML={{ __html: post.content }}
+        />
+      </div>
 
             <h3
               className="related-post-title"
@@ -237,12 +232,12 @@ const BlogPost = () => {
                   className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 px-4 mb-8"
                 >
                   <div>
-                    {/* <img
+                    <img
                       src={post.featuredImage?.node?.sourceUrl}
                       alt="blog-img"
                       className="img-fluid w-100"
                       style={{ maxHeight: "200px", objectFit: "cover" }}
-                    /> */}
+                    />
                     <div
                       className="blog-item-txt"
                       style={{
