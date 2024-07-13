@@ -117,22 +117,24 @@ function About() {
                   </div>
                   <div className="counter-1 col-4 col-lg-4 col-sm-3 col-md-4">
                     <div className="chart" data-percent="55"></div>
-                    <h5>10+</h5>
+                    <h5>10+/</h5>
                     <span>Years in Business</span>
                   </div>
                 </div>
               </div>
               <div className="col-lg-1 col-md-1"></div>
               <div className="col-lg-4 text-center mob-hide sm-hide col-md-5">
-                <div className={`image-container ${imageLoaded2 ? 'image-loaded' : 'image-loading'}`}>
-                  <Image
-                    src="https://milliondejene.github.io/lafto-partners/public/images/about2.JPG"
-                    alt="about-img"
-                    className="img-fluid"
-                    width={300}
-                    height={300}
-                    onLoad={() => setImageLoaded2(true)}
-                  />
+                <div className="about-img ai-two">
+                  <div className={`image-container ${imageLoaded2 ? 'image-loaded' : 'image-loading'}`}>
+                    <Image
+                      src="https://milliondejene.github.io/lafto-partners/public/images/about2.JPG"
+                      alt="about-img"
+                      className="img-fluid"
+                      width={300}
+                      height={300}
+                      onLoad={() => setImageLoaded2(true)}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -140,15 +142,17 @@ function About() {
           <div className="col-lg-10 m-auto about-item col-md-12">
             <div className="row">
               <div className="col-lg-4 col-sm-8 m-sm-auto text-center col-md-5">
-                <div className={`image-container ${imageLoaded3 ? 'image-loaded' : 'image-loading'}`}>
-                  <Image
-                    src="https://milliondejene.github.io/lafto-partners/public/images/about3.JPG"
-                    alt="about-img"
-                    className="img-fluid"
-                    width={300}
-                    height={300}
-                    onLoad={() => setImageLoaded3(true)}
-                  />
+                <div className="about-img ai-three">
+                  <div className={`image-container ${imageLoaded3 ? 'image-loaded' : 'image-loading'}`}>
+                    <Image
+                      src="https://milliondejene.github.io/lafto-partners/public/images/about3.JPG"
+                      alt="about-img"
+                      className="img-fluid"
+                      width={300}
+                      height={300}
+                      onLoad={() => setImageLoaded3(true)}
+                    />
+                  </div>
                 </div>
               </div>
               <div className="col-lg-1 col-md-1"></div>

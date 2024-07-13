@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { ThemeProvider } from '../lib/themeContext';
 import Script from 'next/script';
 import Preloader from '../components/Preloader';
-import { Bitter } from '@next/font/google';
+import { Bitter } from "next/font/google";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../styles/globals.css';

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import { useQuery, gql } from "@apollo/client";
 import Link from "next/link";
 import Slider from "react-slick";
@@ -24,10 +24,12 @@ const GET_BLOG_POSTS = gql`
 
 function BlogList() {
   const { loading, error, data } = useQuery(GET_BLOG_POSTS);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
-  var settings = {
+
+  const settings = {
     dots: true,
     infinite: true,
     speed: 500,
@@ -64,15 +66,12 @@ function BlogList() {
     ],
   };
 
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
+
   return (
-    // <section id="blog">
-    <div
-      id="blog"
-      style={{
-        height: "90%",
-      }}
-      className="container"
-    >
+    <div id="blog" className="container" style={{ height: "90%" }}>
       <div className="row header-text text-center blog-header">
         <div className="col-lg-12">
           <h3>
@@ -80,34 +79,25 @@ function BlogList() {
           </h3>
         </div>
       </div>
-      <div
-        style={{ display: "flex", flexDirection: "row" }}
-        className="row blog-pa blog-list"
-      >
+      <div className="row blog-pa blog-list" style={{ display: "flex", flexDirection: "row" }}>
         <div className="col-lg-8 blog-list-slick h-auto">
           <Slider {...settings} className="blog-main">
             {data?.posts.nodes.map((post) => (
-              <div
-                key={post.id}
-                className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 px-4 mb-8"
-                style={{ height: "100%" }}
-              >
-                {/* header-image */}
+              <div key={post.id} className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 px-4 mb-8" style={{ height: "100%" }}>
                 <div style={{ height: "200px" }}>
-                  <img
-                    src={post.featuredImage?.node?.sourceUrl}
-                    alt="blog-img"
-                    className="img-fluid w-100"
-                    style={{ height: "100%" }}
-                  />
+                  <div className={`image-container ${imageLoaded ? 'image-loaded' : 'image-loading'}`}>
+                    <img
+                      src={post.featuredImage?.node?.sourceUrl}
+                      alt="blog-img"
+                      className="img-fluid w-100"
+                      style={{ height: "100%" }}
+                      onLoad={handleImageLoad}
+                    />
+                  </div>
                 </div>
-                {/* body */}
-                <div tyle={{ height: "50%" }} className="blog-item-txt">
+                <div style={{ height: "50%" }} className="blog-item-txt">
                   <h3>{post.title}</h3>
-                  <p
-                    className="excerpt"
-                    dangerouslySetInnerHTML={{ __html: post.excerpt }}
-                  />
+                  <p className="excerpt" dangerouslySetInnerHTML={{ __html: post.excerpt }} />
                   <Link href={`/blog/${post.id}`}>Read More</Link>
                 </div>
               </div>
@@ -146,7 +136,6 @@ function BlogList() {
         </div>
       </div>
     </div>
-    // </section>
   );
 }
 

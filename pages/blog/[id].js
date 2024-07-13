@@ -1,19 +1,16 @@
-import Slider from "react-slick";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useQuery, gql } from "@apollo/client";
-//
+import Slider from "react-slick";
+import Link from "next/link";
+import Image from "next/image";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import CopyRight from "../../components/copyright";
-import Link from "next/link";
-import Image from "next/image";
 import Preloader from "../../components/Preloader";
 import Subscribe from "../../components/subscribe";
-//
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-// helpers
 import { formatDate } from "../../lib/utils";
 
 const GET_BLOG_POST = gql`
@@ -56,6 +53,7 @@ const GET_BLOG_POST = gql`
 const BlogPost = () => {
   const router = useRouter();
   const { id } = router.query;
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const { loading, error, data } = useQuery(GET_BLOG_POST, {
     variables: { id },
@@ -75,44 +73,18 @@ const BlogPost = () => {
     };
   }, [router]);
 
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
+
   if (loading) return <Preloader />;
   if (error) return <p>Error: {error.message}</p>;
 
   const { post } = data;
-
-  // const blogHeadingStyles = {
-  //   fontSize: "2.5rem",
-  //   lineHeight: "1.2",
-  //   padding: "20px",
-  // };
-
-  // const blog-title-styles = {
-  //   width: "auto",
-  //   marginBottom: "10px",
-  //   alignItems: "center",
-  //   display: "flex",
-  //   justifyContent: "center",
-  //   fontSize: "2rem",
-  //   fontWeight: "bold",
-  //   lineHeight: "1.2",
-  //   padding: "20px",
-  //   backgroundColor: "rgba(255, 255, 255, 0.7)",
-  //   position: "relative",
-  //   zIndex: 1,
-  // };
-
-  // const postMetaStyles = {
-  //   fontSize: "1rem",
-  //   marginBottom: "20px",
-  //   textAlign: "left",
-  //   display: "flex",
-  //   justifyContent: "start",
-  //   alignItems: "left",
-  // };
   const category = post.category;
   const formattedDate = formatDate(post.date);
 
-  var settings = {
+  const settings = {
     dots: true,
     infinite: true,
     speed: 500,
@@ -157,15 +129,15 @@ const BlogPost = () => {
           className="container"
           style={{
             width: "100vw",
-            display:'flex',
-            justifyContent:'center',
-            marginTop:"40px"
+            display: 'flex',
+            justifyContent: 'center',
+            marginTop: "40px"
           }}
         >
           <div className="row blog-pa blog-parent-container">
             <div className="blog-header-image-container">
               {post.featuredImage?.node?.sourceUrl && (
-                <div className="blog-top-section" style={{ height: "auto" }}>
+                <div className={`blog-top-section ${imageLoaded ? 'image-loaded' : 'image-loading'}`} style={{ height: "auto" }}>
                   <Image
                     src={post.featuredImage.node.sourceUrl}
                     alt="Featured Image"
@@ -173,48 +145,47 @@ const BlogPost = () => {
                     width={400}
                     height={400}
                     layout="responsive"
+                    onLoad={handleImageLoad}
                   />
                 </div>
               )}
             </div>
-            <h1 className="blog-title-styles" style={{marginTop:"20px"}}>{post.title}</h1>
+            <h1 className="blog-title-styles" style={{ marginTop: "20px" }}>{post.title}</h1>
             <a
-        style={{
-          marginLeft: "20px",
-          marginBottom:"20px",
-          justifyContent: "start",
-          alignItems: "center",
-          textDecoration: "none",
-          color: "inherit"
-        }}
-      >
-        <span>
-          {formattedDate} &mdash; by {post.author.node.name}
-          {category && category.name !== "Uncategorized" && (
-            <span> in {category.name}</span>
-          )}
-        </span>
-      </a>
+  style={{
+    marginLeft: "20px",
+    marginBottom: "20px",
+    justifyContent: "start",
+    alignItems: "center",
+    textDecoration: "none",
+    color: "inherit"
+  }}
+>
+  <span>
+    <span style={{ color: "gray", marginRight:"5px" }}>{formattedDate}   <span style={{ color: "black" }}> &mdash; </span> by  </span> {post.author.node.name}
+    {category && category.name !== "Uncategorized" && (
+      <span> in {category.name}</span>
+    )}
+  </span>
+</a>
 
-      <div
-        className="blog-post"
-        style={{
-          width: "100%",
-          margin: "20px 0",
-        }}
-      >
-
-        <div
-          className="main-post-content-container"
-          style={{
-            padding: "20px",
-            marginBottom:"20px",
-            marginTop:"20px",
-          }}
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
-      </div>
-
+            <div
+              className="blog-post"
+              style={{
+                width: "100%",
+                margin: "20px 0",
+              }}
+            >
+              <div
+                className="main-post-content-container"
+                style={{
+                  padding: "20px",
+                  marginBottom: "20px",
+                  marginTop: "20px",
+                }}
+                dangerouslySetInnerHTML={{ __html: post.content }}
+              />
+            </div>
             <h3
               className="related-post-title"
               style={{
@@ -232,12 +203,15 @@ const BlogPost = () => {
                   className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 px-4 mb-8"
                 >
                   <div>
-                    <img
-                      src={post.featuredImage?.node?.sourceUrl}
-                      alt="blog-img"
-                      className="img-fluid w-100"
-                      style={{ maxHeight: "200px", objectFit: "cover" }}
-                    />
+                    <div className={`image-container ${imageLoaded ? 'image-loaded' : 'image-loading'}`}>
+                      <img
+                        src={post.featuredImage?.node?.sourceUrl}
+                        alt="blog-img"
+                        className="img-fluid w-100"
+                        style={{ maxHeight: "200px", objectFit: "cover" }}
+                        onLoad={handleImageLoad}
+                      />
+                    </div>
                     <div
                       className="blog-item-txt"
                       style={{
