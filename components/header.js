@@ -11,7 +11,7 @@ function Navbar() {
   const [showSubscribeModal, setShowSubscribeModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { theme, toggleTheme } = useTheme();
-  const logoSrc = theme === "light" ? "/images/logob.png" : "/images/logo.png";
+  const logoSrc = theme === "light" ? "https://milliondejene.github.io/lafto-partners/public/images/logob.png" : "https://milliondejene.github.io/lafto-partners/public/images/logo.png";
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navRef = useRef(null);
