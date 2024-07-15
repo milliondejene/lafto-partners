@@ -15,23 +15,29 @@ const bitter = Bitter({ subsets: ['latin'] });
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
+  const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
-    const loadScripts = ['/js/particles.js'];
+    const loadParticlesScript = () => {
+      const script = document.createElement('script');
+      script.src = '/js/particles.js';
+      script.id = 'particles-js';
+      script.async = true;
+      script.onload = () => {
+        // Wait until the particles.js script is fully loaded and initialized
+        setLoading(false);
+      };
+      document.body.appendChild(script);
+    };
 
     const handleRouteChange = () => {
       setLoading(true);
-      loadScripts.forEach((src) => {
-        const scriptId = src.split('/').pop();
-        if (!document.getElementById(scriptId)) {
-          const script = document.createElement('script');
-          script.src = src;
-          script.id = scriptId;
-          script.async = true;
-          document.body.appendChild(script);
-        }
-      });
-      setTimeout(() => setLoading(false), 3000);
+      if (!initialized) {
+        setInitialized(true);
+        loadParticlesScript();
+      } else {
+        setLoading(false);
+      }
     };
 
     router.events.on('routeChangeStart', handleRouteChange);
@@ -43,18 +49,20 @@ function MyApp({ Component, pageProps }) {
       router.events.off('routeChangeStart', handleRouteChange);
       router.events.off('routeChangeComplete', handleRouteChange);
     };
-  }, [router.events]);
+  }, [router.events, initialized]);
 
   return (
     <ApolloProvider client={client}>
       <ThemeProvider>
         <link rel="icon" href="/favicon.ico" />
+        <title>Lafto Partners</title>
         {loading && <Preloader />}
-        <Script src="/js/particles.js" strategy="lazyOnload" />
+        {!loading && (
+          <main className={bitter.className}>
+            <Component {...pageProps} />
+          </main>
+        )}
         <Script src="/js/app.js" strategy="lazyOnload" />
-        <main className={bitter.className}>
-          <Component {...pageProps} />
-        </main>
       </ThemeProvider>
     </ApolloProvider>
   );

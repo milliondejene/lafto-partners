@@ -11,7 +11,7 @@ function Footer() {
                     <Link href="/#banner">
                         <div className="f-logo">
                             <Image
-                                src="/images/logo2.png"
+                                src="https://milliondejene.github.io/lafto-partners/public/images/logo2.png"
                                 alt="Lafto Partners Logo"
                                 width={60}
                                 height={80}
@@ -20,16 +20,12 @@ function Footer() {
                     </Link>
                     <p>Lafto Partners is dedicated to delivering top-notch marketing and consulting services, driving success for our clients through innovative solutions.</p>
                     <div className="footer-social">
-                        <Link href="https://www.facebook.com/LaftoPartners">
+                        <Link href="https://www.facebook.com/LaftoPartners/">
                             <i className="fa fa-facebook" aria-hidden="true"></i>
                         </Link>
-                        <Link href="https://twitter.com/LaftoPartners">
-                            <i className="fa fa-twitter" aria-hidden="true"></i>
-                        </Link>
-                        <Link href="https://dribbble.com/LaftoPartners">
-                            <i className="fa fa-pinterest" aria-hidden="true"></i>
-                        </Link>
-                        <Link href="https://www.linkedin.com/company/laftopartners">
+                  
+                       
+                        <Link href="https://www.linkedin.com/company/lafto-partners/">
                             <i className="fa fa-linkedin" aria-hidden="true"></i>
                         </Link>
                     </div>
